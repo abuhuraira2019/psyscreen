@@ -1,0 +1,137 @@
+COGNITIVE DISTORTIONS: COMPLETE CLINICAL REFERENCE
+Based on: Burns (1980), Beck (1979), Leahy (2003)
+==================================================
+
+OVERVIEW:
+Cognitive distortions are systematic errors in thinking that maintain psychological distress. Aaron Beck identified these patterns in depressed patients in the 1960s. David Burns popularized them in "Feeling Good" (1980). Identifying and challenging cognitive distortions is the core of cognitive restructuring in CBT.
+
+There are 15 major cognitive distortions:
+
+=== DISTORTION 1: ALL-OR-NOTHING THINKING (Dichotomous/Black-and-White Thinking) ===
+DEFINITION: You see things in absolute, black-and-white categories. If your performance falls short of perfect, you see yourself as a total failure.
+EXAMPLE: "I got one B grade. I'm a complete academic failure."
+URDU/ROMAN URDU EXAMPLE: "Ek baar bura hua to sab kuch kharab hai."
+CHALLENGE QUESTION: "Is there a middle ground between perfect and failure?"
+BALANCED ALTERNATIVE: "I got mostly A's and one B. Overall I performed well."
+ASSOCIATED WITH: Depression, perfectionism, eating disorders.
+
+=== DISTORTION 2: OVERGENERALIZATION ===
+DEFINITION: You see a single negative event as a never-ending pattern of defeat, using words like "always" or "never."
+EXAMPLE: "I failed this interview. I'll never get a job. I always fail."
+ROMAN URDU EXAMPLE: "Main hamesha hi haar jaata hoon."
+CHALLENGE QUESTION: "Does one instance really mean this ALWAYS happens?"
+BALANCED ALTERNATIVE: "I didn't get this job. That's disappointing, but one interview doesn't define my future."
+ASSOCIATED WITH: Depression, hopelessness.
+
+=== DISTORTION 3: MENTAL FILTER (Selective Abstraction) ===
+DEFINITION: You focus on one negative detail exclusively so that your vision of all reality becomes darkened.
+EXAMPLE: You receive excellent feedback on a presentation but focus only on the one minor criticism.
+ROMAN URDU EXAMPLE: "Sab ne tarif ki magar ek ne bura kaha, toh sab kuch bekar tha."
+CHALLENGE QUESTION: "Am I ignoring all the positive? What is the complete picture?"
+ASSOCIATED WITH: Depression, anxiety.
+
+=== DISTORTION 4: DISQUALIFYING THE POSITIVE ===
+DEFINITION: You reject positive experiences by insisting they "don't count" for some reason.
+EXAMPLE: "My boss complimented my work, but she was just being polite."
+ROMAN URDU EXAMPLE: "Unhone tarif ki, magar shayad sirf achi baat karne ke liye."
+CHALLENGE QUESTION: "What evidence do I have that the positive is not genuine?"
+ASSOCIATED WITH: Depression, low self-esteem.
+
+=== DISTORTION 5: JUMPING TO CONCLUSIONS ===
+DEFINITION: You make a negative interpretation even though there are no definite facts that convincingly support your conclusion. Two types:
+
+TYPE A - MIND READING:
+You arbitrarily conclude that someone is reacting negatively to you.
+EXAMPLE: "My friend didn't text back. She must be angry with me."
+ROMAN URDU EXAMPLE: "Usne jawab nahi diya, zaroor naraaz hogi mujhse."
+CHALLENGE: "What other explanations are there for her not replying?"
+
+TYPE B - FORTUNE TELLING:
+You anticipate that things will turn out badly and feel convinced your prediction is already-established fact.
+EXAMPLE: "I know I'm going to fail this exam."
+ROMAN URDU EXAMPLE: "Mujhe pata hai yeh imtihan mein fail hounga."
+CHALLENGE: "How do I know this will happen? Have I been wrong before?"
+ASSOCIATED WITH: Anxiety, depression.
+
+=== DISTORTION 6: MAGNIFICATION (Catastrophizing) OR MINIMIZATION ===
+DEFINITION: You exaggerate the importance of negative things (catastrophizing) or shrink the importance of positive things (minimizing).
+CATASTROPHIZING EXAMPLE: "I made a mistake at work. This is a disaster! I'll lose my job!"
+MINIMIZING EXAMPLE: "Yes, I won the award, but it was just a small thing."
+ROMAN URDU CATASTROPHIZING: "Itni badi galti ho gayi, sab khatam."
+CHALLENGE: "Am I making this bigger than it is? What is the most realistic outcome?"
+ASSOCIATED WITH: Anxiety (catastrophizing), depression (minimizing).
+
+=== DISTORTION 7: EMOTIONAL REASONING ===
+DEFINITION: You assume that your negative emotions necessarily reflect the way things really are: "I feel it, therefore it must be true."
+EXAMPLE: "I feel like a failure, therefore I am a failure."
+ROMAN URDU EXAMPLE: "Mujhe lag raha hai main ghalat hoon, toh zaroor ghalat hoon."
+CHALLENGE QUESTION: "Feelings are not facts. What does the evidence actually show?"
+KEY INSIGHT: "You can feel worthless without being worthless. Your emotions are real, but they don't always reflect reality."
+ASSOCIATED WITH: Depression, anxiety.
+
+=== DISTORTION 8: SHOULD STATEMENTS ===
+DEFINITION: You try to motivate yourself with "should," "shouldn't," "must," "ought," and "have to" statements. This creates guilt, shame, and resentment.
+EXAMPLE (toward self): "I should always be productive. I must never make mistakes."
+EXAMPLE (toward others): "People should always be fair to me."
+ROMAN URDU EXAMPLE: "Mujhe hamesha sab ke liye available rehna chahiye."
+CHALLENGE: "Where did this rule come from? Is it realistic? What happens if it's violated?"
+BALANCED ALTERNATIVE: "I prefer to be productive, but rest is a human need, not a failure."
+ASSOCIATED WITH: Depression, guilt, anger, anxiety.
+
+=== DISTORTION 9: LABELING AND MISLABELING ===
+DEFINITION: An extreme form of overgeneralization. Instead of describing your error, you attach a negative label to yourself or others.
+EXAMPLE: "I'm a loser" (instead of "I made a mistake").
+ROMAN URDU EXAMPLE: "Main ek nakaam insaan hoon." / "Woh bewaqoof hai."
+CHALLENGE: "Am I defining my entire self by one behavior? Can one event define a whole person?"
+BALANCED ALTERNATIVE: "I did something I regret. That doesn't make me a loser — it makes me human."
+ASSOCIATED WITH: Low self-esteem, depression, anger.
+
+=== DISTORTION 10: PERSONALIZATION ===
+DEFINITION: You see yourself as the cause of some negative external event for which you are not primarily responsible.
+EXAMPLE: "My son is struggling at school. I'm a terrible parent."
+ROMAN URDU EXAMPLE: "Ghar mein jhagra hua — yeh sab meri wajah se hua."
+CHALLENGE: "Am I taking responsibility for things I cannot control? What other factors are involved?"
+ASSOCIATED WITH: Guilt, depression, excessive responsibility.
+
+=== DISTORTION 11: CONTROL FALLACIES ===
+TYPE A - EXTERNAL CONTROL FALLACY: Feeling externally controlled as a victim of fate.
+"There's nothing I can do. It's all up to fate (taqdeer)."
+TYPE B - INTERNAL CONTROL FALLACY: Feeling responsible for the pain/happiness of everyone around you.
+"I'm responsible for making everyone happy."
+CHALLENGE: "What CAN I actually control? What is outside my control?"
+
+=== DISTORTION 12: FALLACY OF FAIRNESS ===
+DEFINITION: Feeling resentful because you think you know what is fair, but others do not agree.
+EXAMPLE: "It's not fair that I work so hard and get no recognition."
+ROMAN URDU EXAMPLE: "Main itna karta hoon magar insaaf nahi hota."
+CHALLENGE: "Life is not always fair. How can I cope with this reality effectively?"
+
+=== DISTORTION 13: BLAMING ===
+DEFINITION: Holding other people responsible for your emotional pain, or blaming yourself for every problem.
+EXAMPLE: "My depression is my family's fault." / "It's all my fault."
+CHALLENGE: "Blame keeps me stuck. What can I do regardless of who is at fault?"
+
+=== DISTORTION 14: ALWAYS BEING RIGHT ===
+DEFINITION: Being continually on trial to prove that your opinions and actions are correct.
+EXAMPLE: "I have to prove I'm right. Being wrong is unacceptable."
+CHALLENGE: "Is being right more important than effective communication or relationships?"
+
+=== DISTORTION 15: HEAVEN'S REWARD FALLACY ===
+DEFINITION: Expecting your sacrifice and self-denial to pay off as if there is a ledger being kept.
+EXAMPLE: "I've worked so hard and sacrificed so much. I deserve success, but I'm not getting it."
+CHALLENGE: "Life doesn't automatically reward sacrifice. What can I do to actively pursue what I want?"
+
+=============================================================
+IDENTIFYING COGNITIVE DISTORTIONS: QUICK REFERENCE TABLE
+=============================================================
+Trigger Words → Likely Distortion:
+"Always" / "Never" → Overgeneralization
+"I feel therefore I am" → Emotional Reasoning
+"I should / must" → Should Statements
+"It's all my fault" → Personalization / Blaming
+"What if the worst happens?" → Catastrophizing
+"They must think I'm..." → Mind Reading
+"It'll definitely go wrong" → Fortune Telling
+"Either I'm perfect or I'm worthless" → All-or-Nothing Thinking
+"I'm a loser / idiot / failure" → Labeling
+"All the good doesn't count" → Disqualifying the Positive

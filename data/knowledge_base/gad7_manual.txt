@@ -1,0 +1,65 @@
+GAD-7: GENERALIZED ANXIETY DISORDER - 7 ITEM SCALE
+CLINICAL ADMINISTRATION MANUAL
+===================================================
+
+OVERVIEW:
+The GAD-7 (Generalized Anxiety Disorder 7-item scale) is a validated self-report screening tool and symptom severity measure for Generalized Anxiety Disorder. Developed by Dr. Robert Spitzer, Janet Williams, and Kurt Kroenke (2006), it has also been found valid for detecting other anxiety disorders including panic disorder, social anxiety disorder, and post-traumatic stress disorder. Published in the Archives of Internal Medicine (Spitzer et al., 2006).
+
+ADMINISTRATION INSTRUCTIONS:
+- The GAD-7 covers the past TWO WEEKS only.
+- Introduce with: "Over the last 2 weeks, how often have you been bothered by the following problems?"
+- Ask questions ONE AT A TIME. Wait for patient response before proceeding.
+- Validate the patient's answer empathetically before moving to the next question.
+- Response options: Not at all (0) / Several days (1) / More than half the days (2) / Nearly every day (3)
+
+THE 7 QUESTIONS (Ask in this exact order, one at a time):
+---------------------------------------------------------
+Question 1: "Feeling nervous, anxious, or on edge?"
+Question 2: "Not being able to stop or control worrying?"
+Question 3: "Worrying too much about different things?"
+Question 4: "Trouble relaxing?"
+Question 5: "Being so restless that it is hard to sit still?"
+Question 6: "Becoming easily annoyed or irritable?"
+Question 7: "Feeling afraid, as if something awful might happen?"
+
+FUNCTIONAL IMPAIRMENT ITEM (Optional follow-up after Q7):
+"If you checked off any problems, how difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?"
+Options: Not difficult at all / Somewhat difficult / Very difficult / Extremely difficult
+
+SCORING RULES:
+--------------
+Each item is scored: Not at all = 0, Several days = 1, More than half the days = 2, Nearly every day = 3
+Total score range: 0 to 21
+
+SEVERITY THRESHOLDS:
+- Score 0–4:   Minimal Anxiety (Normal range; monitor if symptoms persist)
+- Score 5–9:   Mild Anxiety (Psychoeducation; self-help CBT resources recommended)
+- Score 10–14: Moderate Anxiety (Further evaluation needed; consider psychotherapy referral)
+- Score 15–21: Severe Anxiety (Active treatment strongly recommended; consider pharmacotherapy + CBT)
+
+CLINICAL CUT-OFF POINT:
+A score of 10 or greater is the recommended threshold for further clinical evaluation and potential diagnosis of GAD. Sensitivity = 89%, Specificity = 82% at this cut-off.
+
+SENSITIVITY TO OTHER ANXIETY CONDITIONS:
+- For Panic Disorder: Cut-off of 8 provides better sensitivity
+- For Social Anxiety Disorder: Cut-off of 8 provides better sensitivity
+- For PTSD: Cut-off of 8 provides better sensitivity
+- For GAD specifically: Cut-off of 10 is optimal
+
+ROMAN URDU SCORING GUIDE:
+- "bilkul nahi" = Not at all (0)
+- "kuch dinon mein" = Several days (1)
+- "adhe se zyada din" = More than half the days (2)
+- "har roz" or "hamesha" = Nearly every day (3)
+
+COMMON ROMAN URDU ANXIETY EXPRESSIONS AND THEIR MAPPING:
+- "dil ghabra raha hai" → anxiety/palpitations (score: based on frequency)
+- "neend nahi aati" → trouble sleeping/restlessness
+- "bahut fikar hoti hai" → worrying too much (Q3)
+- "chain nahi milta" → trouble relaxing (Q4)
+- "chidchida hoon" → easily annoyed/irritable (Q6)
+- "kuch bura hone wala hai" → feeling afraid/something awful (Q7)
+- "ruk nahi sakta sochne se" → can't stop worrying (Q2)
+
+DISCLAIMER:
+The GAD-7 is a validated screening and symptom severity measure. It is not a diagnostic tool. A formal diagnosis of Generalized Anxiety Disorder or any other anxiety disorder must be made by a qualified healthcare professional following a comprehensive clinical assessment. This tool is for research and educational purposes only.

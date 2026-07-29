@@ -1,0 +1,53 @@
+PHQ-9: PATIENT HEALTH QUESTIONNAIRE - 9 ITEM
+CLINICAL ADMINISTRATION MANUAL
+============================================
+
+OVERVIEW:
+The PHQ-9 (Patient Health Questionnaire-9) is a validated, 9-item self-report depression screening tool developed by Dr. Robert Spitzer, Janet Williams, and Kurt Kroenke. It is based on the nine diagnostic criteria for Major Depressive Disorder from the DSM-IV. The PHQ-9 is one of the most widely used depression screening instruments in primary care and research settings.
+
+ADMINISTRATION INSTRUCTIONS:
+- The PHQ-9 covers the past TWO WEEKS only.
+- Introduce with: "Over the last 2 weeks, how often have you been bothered by any of the following problems?"
+- Ask questions ONE AT A TIME and wait for patient response before proceeding.
+- Validate the patient's answer briefly before moving to the next question.
+- Response options must be presented as: Not at all (0) / Several days (1) / More than half the days (2) / Nearly every day (3)
+
+THE 9 QUESTIONS (Ask in this exact order, one at a time):
+---------------------------------------------------------
+Question 1: "Little interest or pleasure in doing things?"
+Question 2: "Feeling down, depressed, or hopeless?"
+Question 3: "Trouble falling or staying asleep, or sleeping too much?"
+Question 4: "Feeling tired or having little energy?"
+Question 5: "Poor appetite or overeating?"
+Question 6: "Feeling bad about yourself — or that you are a failure or have let yourself or your family down?"
+Question 7: "Trouble concentrating on things, such as reading the newspaper or watching television?"
+Question 8: "Moving or speaking so slowly that other people could have noticed? Or the opposite — being so fidgety or restless that you have been moving around a lot more than usual?"
+Question 9: "Thoughts that you would be better off dead or of hurting yourself in some way?"
+
+FUNCTIONAL IMPAIRMENT ITEM (Optional follow-up after Q9):
+"If you checked off any problems, how difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?"
+Options: Not difficult at all / Somewhat difficult / Very difficult / Extremely difficult
+
+SCORING RULES:
+--------------
+Each item is scored: Not at all = 0, Several days = 1, More than half the days = 2, Nearly every day = 3
+Total score range: 0 to 27
+
+SEVERITY THRESHOLDS:
+- Score 0–4:   Minimal or No Depression (Monitor; may not require treatment)
+- Score 5–9:   Mild Depression (Watchful waiting; repeat PHQ-9 at follow-up)
+- Score 10–14: Moderate Depression (Treatment plan, consider counseling, follow up)
+- Score 15–19: Moderately Severe Depression (Active treatment with psychotherapy and/or pharmacotherapy)
+- Score 20–27: Severe Depression (Immediate initiation of pharmacotherapy and, if severe impairment, referral to psychiatric specialist)
+
+CRITICAL SAFETY RULE - QUESTION 9:
+If the patient answers "Several days," "More than half the days," or "Nearly every day" to Question 9 (thoughts of self-harm), this requires IMMEDIATE clinical attention regardless of total score. Activate Crisis Protocol immediately.
+
+ROMAN URDU SCORING GUIDE:
+- "bilkul nahi" = Not at all (0)
+- "kuch dinon mein" = Several days (1)
+- "adhe se zyada din" = More than half the days (2)
+- "har roz" or "hamesha" = Nearly every day (3)
+
+DISCLAIMER:
+The PHQ-9 is a screening tool, not a diagnostic instrument. A definitive diagnosis of depression must be made by a qualified healthcare professional who considers the full clinical history, severity, duration, and functional impact of symptoms. This tool is for research and educational purposes only.

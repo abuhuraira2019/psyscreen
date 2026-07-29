@@ -1,0 +1,197 @@
+ROMAN URDU / URDU CLINICAL SYMPTOM MAPPING CORPUS
+PsyScreen-RAG Linguistic Processing Layer
+For PHQ-9, GAD-7, and CBT Interventions
+==============================================
+
+PURPOSE:
+This corpus maps common Roman Urdu (Minglish) and Urdu expressions to their standardized English clinical equivalents for accurate symptom interpretation and scoring.
+
+=== CRISIS KEYWORDS (IMMEDIATE SAFETY PROTOCOL REQUIRED) ===
+These words/phrases MUST trigger the crisis safety protocol:
+- khudkushi (خودکشی) → SUICIDAL IDEATION / CRISIS
+- khud ko nuqsaan (خود کو نقصان) → SELF-HARM
+- marna chahta hoon (مرنا چاہتا ہوں) → SUICIDAL IDEATION (male)
+- marna chahti hoon (مرنا چاہتی ہوں) → SUICIDAL IDEATION (female)
+- zindagi khatam karna (زندگی ختم کرنا) → SUICIDAL IDEATION
+- jina nahi chahta/chahti → PASSIVE SUICIDAL IDEATION
+- apne aap ko hurt karna → SELF-HARM
+- maut ki tamanna (موت کی تمنا) → WISH FOR DEATH
+- dunya se chala jana chahta/chahti hoon → WISH TO DISAPPEAR/DIE
+- khud ko takleef dena chahta hoon → SELF-HARM IDEATION
+- life khatam karna chahta hoon → SUICIDAL IDEATION
+
+=== PHQ-9 QUESTION 1: Little interest or pleasure in doing things ===
+Roman Urdu expressions mapping to ANHEDONIA / LOSS OF INTEREST:
+- "kisi cheez mein dil nahi lagta" → No interest in anything
+- "kuch karna hi nahi chahta" → No desire to do anything
+- "purane shauq khatam ho gaye" → Lost old hobbies/interests
+- "sab bekar lagta hai" → Everything seems pointless
+- "koi khushi nahi milti" → No pleasure/joy
+- "maza nahi aata kisi cheez mein" → Nothing is enjoyable
+- "dil udaas rehta hai" → Heart/mood is sad
+- "dil nahi lagta" → Can't engage/no interest
+- "sab kuch boring hai" → Everything is boring
+- "kisi cheez ka shauq nahi" → No enthusiasm for anything
+
+=== PHQ-9 QUESTION 2: Feeling down, depressed, or hopeless ===
+Roman Urdu expressions mapping to DEPRESSED MOOD / HOPELESSNESS:
+- "bahut udaas hoon" → Very sad/depressed
+- "rona aata hai" → Feeling like crying
+- "dil bhar aata hai" → Overwhelmed with emotion
+- "umeed nahi rahi" → Lost hope
+- "sab kuch bekar lagta hai" → Everything feels worthless
+- "zindagi mein khushi nahi" → No happiness in life
+- "kuch theek nahi hoga" → Nothing will get better
+- "aainda accha nahi hoga" → Future is hopeless
+- "haar gaya hoon" → I've given up / feel defeated
+- "gham mein dooba hoon" → Drowning in sadness
+- "dil toot gaya hai" → Heartbroken / deeply saddened
+- "pareshan rehta hoon" → Constantly distressed
+
+=== PHQ-9 QUESTION 3: Trouble sleeping or sleeping too much ===
+Roman Urdu expressions mapping to INSOMNIA / HYPERSOMNIA:
+- "neend nahi aati" → Cannot sleep (insomnia)
+- "rat bhar jaga rehta hoon" → Awake all night
+- "bahut neend aati hai" → Sleeping too much (hypersomnia)
+- "uth nahi sakta / sakti" → Cannot get up from bed
+- "ankhein nahi lagtein" → Eyes won't close / can't sleep
+- "darr ke uthta/uthti hoon" → Wake up frightened
+- "bure khwab aate hain" → Nightmares
+- "bohot der se neend aati hai" → Takes very long to fall asleep
+- "raat ko baar baar uthna parta hai" → Waking up repeatedly at night
+
+=== PHQ-9 QUESTION 4: Feeling tired or having little energy ===
+Roman Urdu expressions mapping to FATIGUE / LOW ENERGY:
+- "bahut thaka/thaki hoon" → Very tired/fatigued
+- "energy nahi hai" → No energy
+- "kuch karne ka jee nahi" → No desire/energy to do things
+- "thaka thaka lagta hai" → Constant fatigue
+- "sust hoon" → Lethargic/sluggish
+- "kaam nahi ho sakta thakaan ki wajah se" → Can't work due to fatigue
+- "haath pair nahi uthte" → Limbs feel too heavy
+- "uthne ka jee nahi karta" → Don't feel like getting up
+
+=== PHQ-9 QUESTION 5: Poor appetite or overeating ===
+Roman Urdu expressions mapping to APPETITE CHANGES:
+- "bhook nahi lagti" → No appetite
+- "khaana nahi khata/khati" → Not eating
+- "khaane ka dil nahi karta" → No desire to eat
+- "bahut zyada khaata/khaati hoon" → Overeating
+- "khaane par control nahi" → Can't control eating
+- "kuch bhi khaate rehta/rehti hoon" → Eating constantly
+- "wazn ghatt raha hai" → Losing weight
+- "wazn barh raha hai" → Gaining weight
+
+=== PHQ-9 QUESTION 6: Feeling bad about yourself / failure ===
+Roman Urdu expressions mapping to LOW SELF-ESTEEM / GUILT:
+- "main kisi kaam ka nahi hoon" → I'm worthless/useless
+- "main haar gaya/gayi hoon" → I have failed
+- "sab ki takleef ki wajah main hoon" → I'm the cause of everyone's pain
+- "apne aap se nafrat hai" → Self-hatred
+- "sharmindagi mehsoos hoti hai" → Feeling ashamed
+- "gunah hua hai mujhse" → Feeling guilty for wrongdoing
+- "main burha/buri hoon" → I am bad
+- "apni galtiyon ka maafi nahi" → Can't forgive my mistakes
+- "main chota/choti insaan hoon" → I feel like a small/lesser person
+- "khud ko qusurwar samjhta/samjhti hoon" → Feeling self-blame
+
+=== PHQ-9 QUESTION 7: Trouble concentrating ===
+Roman Urdu expressions mapping to POOR CONCENTRATION:
+- "dhyan nahi lagta" → Can't concentrate/focus
+- "yaad nahi rehta" → Can't remember things
+- "bhool jaata/jaati hoon" → Forgetting things
+- "kuch parh nahi sakta/sakti" → Can't read/study
+- "kaam mein dhyan nahi" → Mind not on work
+- "zehan mein sab kuch ghoom raha hai" → Mind is all over the place
+- "koi baat dimagh mein nahi rehti" → Nothing stays in memory
+
+=== PHQ-9 QUESTION 8: Moving/speaking slowly OR fidgety/restless ===
+Roman Urdu expressions mapping to PSYCHOMOTOR CHANGES:
+- "aahista aahista chalta hoon" → Moving very slowly
+- "bolne mein takleef hoti hai" → Difficulty speaking
+- "baiqarar hoon" → Very restless
+- "ek jagah baith nahi sakta/sakti" → Can't sit still
+- "haath pair hilte rehte hain" → Constantly moving hands/feet
+- "neend mein bhi harakaat karta/karti hoon" → Restless even in sleep
+
+=== PHQ-9 QUESTION 9: CRISIS QUESTION - Thoughts of self-harm/death ===
+ANY of the following require IMMEDIATE crisis protocol:
+[See Crisis Keywords section above]
+
+=== GAD-7 QUESTION 1: Feeling nervous, anxious, or on edge ===
+Roman Urdu expressions mapping to NERVOUSNESS / ANXIETY:
+- "ghabrahat rehti hai" → Constant anxiety/nervousness
+- "dil dharakta rehta hai" → Palpitations / racing heart
+- "haath kaampte hain" → Trembling hands
+- "paet mein gadbad rehti hai" → Stomach upset from anxiety
+- "saans chhoti ho jaati hai" → Shortness of breath
+- "dil ghabra raha hai" → Anxiety / panic sensation
+- "andar se darr lagta hai" → Feeling scared inside
+- "tension mein rehta/rehti hoon" → Constantly tense
+- "pareshaan rehta/rehti hoon" → Constantly worried
+
+=== GAD-7 QUESTION 2: Not being able to stop or control worrying ===
+Roman Urdu expressions mapping to UNCONTROLLABLE WORRY:
+- "sochna band nahi hota" → Can't stop thinking
+- "fikr hoti rehti hai" → Constant worry/concern
+- "dimaag nahi rukta" → Mind won't stop
+- "hamesha sochta/sochti rehta/rehti hoon" → Always thinking
+- "worry band nahi hoti" → Worrying won't stop
+- "dimagh mein sab kuch ghoomta rehta hai" → Mind keeps spinning
+
+=== GAD-7 QUESTION 3: Worrying too much about different things ===
+Roman Urdu expressions mapping to EXCESSIVE/MULTIPLE WORRIES:
+- "har cheez ki fikr hai" → Worried about everything
+- "paise ki bhi fikr, ghar ki bhi, kaam ki bhi" → Multiple simultaneous worries
+- "choti choti baaton par tension hoti hai" → Worried about small things too
+- "sab kuch sochta/sochti rehta/rehti hoon" → Thinking about everything
+
+=== GAD-7 QUESTION 4: Trouble relaxing ===
+Roman Urdu expressions mapping to INABILITY TO RELAX:
+- "sukoon nahi milta" → No peace/relaxation
+- "aram nahi milta" → Can't relax
+- "chain nahi aata" → No contentment/rest
+- "dil bechain rehta hai" → Heart/mind is restless
+- "sona bhi chain se nahi hota" → Even sleep is not restful
+
+=== GAD-7 QUESTION 5: Being so restless it is hard to sit still ===
+Roman Urdu expressions mapping to MOTOR RESTLESSNESS:
+- "ek jagah baith nahi sakta/sakti" → Can't sit still
+- "baiqarar hoon" → Restless/agitated
+- "khali nahi beth sakta/sakti" → Can't sit idle
+- "gehma gehmi mehsoos hoti hai" → Feeling of agitation
+
+=== GAD-7 QUESTION 6: Becoming easily annoyed or irritable ===
+Roman Urdu expressions mapping to IRRITABILITY / ANGER:
+- "chidchidapan hai mujhe" → I am irritable
+- "jaldi gussa aata hai" → Quick temper
+- "chhoti chhoti baaton par gussa aata hai" → Angry at small things
+- "sabse ladta/ladti rehta/rehti hoon" → Fighting with everyone
+- "sabr nahi rehta" → No patience
+- "sar dard rehta hai tension se" → Headaches from tension
+- "sab se pareshan hoon" → Irritated by everyone
+
+=== GAD-7 QUESTION 7: Feeling afraid as if something awful might happen ===
+Roman Urdu expressions mapping to FEARFUL ANTICIPATION:
+- "kuch bura hone wala hai" → Something bad is going to happen
+- "darr lagta hai" → Feeling afraid
+- "ander se dhamki mehsoos hoti hai" → Sense of impending doom
+- "yaqeen hai ke koi musibat aane wali hai" → Certain that trouble is coming
+- "dil mein khauf hai" → Fear in the heart
+- "koi andesha rehta hai" → A constant sense of dread/worry
+
+=== RESPONSE OPTIONS IN ROMAN URDU (For all PHQ-9 and GAD-7 items) ===
+- "bilkul nahi" / "nahi bilkul" → Not at all (Score: 0)
+- "kuch baar" / "kuch dinon" / "thoda" / "kbhi kbhi" → Several days (Score: 1)
+- "adhe se zyada time" / "zyada tar" / "aksar" → More than half the days (Score: 2)
+- "hamesha" / "har roz" / "baar baar" / "roz" → Nearly every day (Score: 3)
+
+=== COMMON GREETING AND CONVERSATION PHRASES ===
+- "Salam" / "Assalamualaikum" → Greeting
+- "Theek hoon" → I am fine
+- "Acha nahi hun" → Not feeling well
+- "Mujhe madad chahiye" → I need help
+- "Samajh nahi aaya" → I don't understand
+- "Dobara batayein" → Please repeat
+- "Shukria" / "Shukriya" → Thank you
+- "Koi baat nahi" → No problem / It's okay

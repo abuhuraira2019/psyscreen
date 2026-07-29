@@ -1,0 +1,180 @@
+COGNITIVE BEHAVIORAL THERAPY (CBT): CORE MODULES & EVIDENCE-BASED TECHNIQUES
+A Clinical Reference Guide for PsyScreen-RAG
+==============================================================================
+
+SOURCE: Adapted from evidence-based clinical materials including:
+- "A Provider's Guide to Brief Cognitive Behavioral Therapy" (VA/DoD, South Central MIRECC)
+- Beck, A.T. (1979). Cognitive Therapy of Depression. Guilford Press.
+- Burns, D.D. (1980). Feeling Good: The New Mood Therapy.
+- CCI (Centre for Clinical Interventions) self-help modules.
+
+SECTION 1: THE CBT MODEL - THEORETICAL FOUNDATION
+==================================================
+Cognitive Behavioral Therapy (CBT) is an evidence-based, structured, time-limited psychotherapy. It is founded on the premise that psychological distress arises from dysfunctional patterns of thinking, feeling, and behaving — and that by changing these patterns, emotional well-being can be significantly improved.
+
+THE CBT TRIANGLE (Cognitive Triad):
+- THOUGHTS (Cognitions) → influence feelings and behaviors
+- FEELINGS (Emotions) → influence thoughts and behaviors  
+- BEHAVIORS (Actions) → influence thoughts and feelings
+These three elements are interconnected. Changing one element creates positive change in all others.
+
+KEY PRINCIPLES OF CBT:
+1. Collaborative Empiricism: Therapist and patient work together as a team.
+2. Structured sessions: Each session has an agenda, homework review, and assignments.
+3. Problem-focused: CBT targets specific problems and symptoms.
+4. Time-limited: Typically 12-20 sessions for depression/anxiety.
+5. Skills-based: Patients learn coping skills they can use independently.
+6. Psychoeducation: Patient education about the disorder is a core component.
+
+SECTION 2: PSYCHOEDUCATION
+===========================
+Psychoeducation is always the FIRST step in CBT. Before any technique is taught, the patient must understand:
+1. What depression/anxiety is (symptoms, prevalence, causes)
+2. How CBT works (the cognitive model)
+3. The role of homework between sessions
+4. That recovery is possible with treatment
+
+Key psychoeducation points for depression:
+- Depression is not a character flaw or weakness.
+- Depression affects mood, thoughts, energy, sleep, and appetite.
+- Depression creates a "downward spiral": low mood → withdrawal → less pleasure → lower mood.
+- Behavioral activation breaks this cycle.
+
+Key psychoeducation points for anxiety:
+- Anxiety is a normal human response to perceived threat.
+- The "fight or flight" response is biologically hardwired.
+- Anxiety becomes problematic when the alarm system fires too often or too intensely.
+- Avoidance maintains and strengthens anxiety over time.
+
+SECTION 3: THOUGHT RECORDS (DYSFUNCTIONAL THOUGHT DIARY)
+=========================================================
+Thought records are the cornerstone CBT tool for identifying and challenging negative automatic thoughts (NATs).
+
+THE 7-COLUMN THOUGHT RECORD:
+Column 1 - Situation: What were you doing? Where? When? Who were you with?
+Column 2 - Emotions: What emotions did you feel? Rate intensity 0-100%.
+Column 3 - Automatic Thoughts: What thoughts went through your mind? What images?
+Column 4 - Evidence FOR: What facts support this thought?
+Column 5 - Evidence AGAINST: What facts contradict this thought?
+Column 6 - Balanced Thought: Write a more balanced, realistic alternative thought.
+Column 7 - Outcome: Re-rate emotion intensity. What will you do now?
+
+HOW TO USE THOUGHT RECORDS WITH PATIENTS:
+1. Ask: "What was going through your mind just before you started feeling [emotion]?"
+2. Help identify the "hot thought" — the most distressing automatic thought.
+3. Guide examination of evidence for AND against this thought.
+4. Generate a balanced alternative together using Socratic questioning.
+5. Re-rate emotion intensity after the exercise.
+
+SECTION 4: COGNITIVE RESTRUCTURING
+====================================
+Cognitive restructuring is the process of identifying, evaluating, and modifying maladaptive thoughts.
+
+THE ABCDE MODEL (Ellis, Rational Emotive Behavior Therapy):
+A - Activating Event: The triggering situation
+B - Beliefs: The thoughts and beliefs triggered by A
+C - Consequences: The emotional and behavioral consequences of B
+D - Disputation: Challenging and examining the beliefs in B
+E - Effective Alternative: Developing a more balanced, helpful belief
+
+SOCRATIC QUESTIONING TECHNIQUES:
+1. "What evidence do you have for that thought?"
+2. "What evidence do you have against it?"
+3. "What would you say to a friend who had this thought?"
+4. "What is the worst that could happen? Could you cope with it?"
+5. "What is the best that could happen?"
+6. "What is the most realistic outcome?"
+7. "What is the effect of believing this thought?"
+8. "What would be more helpful to think in this situation?"
+
+ROMAN URDU COGNITIVE RESTRUCTURING PROMPTS:
+- "Is soch ka koi saboot hai?" = "Is there evidence for this thought?"
+- "Agar aapka dost yeh sochta, toh aap kya kehte?" = "If your friend thought this, what would you say?"
+- "Kya koi doosri wajah ho sakti hai?" = "Could there be another reason?"
+
+SECTION 5: BEHAVIORAL ACTIVATION (BA)
+=======================================
+Behavioral Activation is the primary CBT intervention for depression. It is based on the behavioral model that depression causes withdrawal from rewarding activities, which reduces positive reinforcement and worsens depression.
+
+THE BA CYCLE:
+Depression → Low motivation → Withdrawal/Avoidance → Less pleasure/reward → More depression
+
+BREAKING THE BA CYCLE:
+1. Activity Monitoring: Patient tracks daily activities and mood (0-10) for 1 week.
+2. Activity Scheduling: Therapist and patient collaboratively schedule 2-3 enjoyable or meaningful activities per day.
+3. Graded Task Assignment: Break large overwhelming tasks into small, manageable steps.
+4. Pleasure and Mastery Activities: Schedule both enjoyable activities (pleasure) and activities that give a sense of accomplishment (mastery).
+5. Anti-procrastination strategies: Identify and overcome barriers to activity.
+
+TYPES OF REWARDING ACTIVITIES:
+- Pleasure: watching a favorite show, calling a friend, eating favorite food, listening to music
+- Mastery: cleaning a room, completing a task, exercising, cooking a meal
+- Social: spending time with family, joining a group, volunteering
+- Physical: walking, exercise, yoga, sports
+- Meaningful: prayer, reading Quran, helping others, creative activities
+
+ROMAN URDU BA ENCOURAGEMENT PHRASES:
+- "Choti choti koshish bhi bari tabdeeli la sakti hai."
+- "Aaj ek kaam zaroor karein, chahe kitna hi chota ho."
+- "Khayal rakhna: kaam karne se motivation aata hai, pehle se nahi."
+
+SECTION 6: PROBLEM-SOLVING THERAPY (PST)
+==========================================
+Problem-solving therapy is a CBT technique that helps patients develop a structured approach to managing life's problems that contribute to depression and anxiety.
+
+THE 6-STEP PROBLEM-SOLVING PROCESS:
+Step 1 - Problem Definition: Clearly define the specific problem (not a vague worry).
+Step 2 - Goal Setting: What do you want to achieve? What would success look like?
+Step 3 - Brainstorm Solutions: Generate as many solutions as possible (no judgment yet).
+Step 4 - Evaluate Pros and Cons: Evaluate the feasibility and consequences of each solution.
+Step 5 - Choose and Plan: Select the best solution and create a specific action plan.
+Step 6 - Review: After implementing, evaluate the outcome. What worked? What to modify?
+
+DISTINGUISHING REAL PROBLEMS FROM HYPOTHETICAL WORRIES:
+- Real problem: Something happening NOW that CAN be solved with action.
+- Hypothetical worry: "What if..." scenarios about future events that may not happen.
+- For real problems: Use problem-solving.
+- For hypothetical worries: Use worry postponement and cognitive restructuring.
+
+SECTION 7: RELAXATION TECHNIQUES
+==================================
+Relaxation techniques are used in CBT as coping strategies for anxiety, stress, and physical tension.
+
+DIAPHRAGMATIC BREATHING (4-7-8 Technique):
+1. Inhale slowly through the nose for 4 counts.
+2. Hold the breath for 7 counts.
+3. Exhale slowly through the mouth for 8 counts (make a whooshing sound).
+4. Repeat 4 times.
+Benefits: Activates the parasympathetic nervous system; reduces physiological anxiety response.
+
+PROGRESSIVE MUSCLE RELAXATION (PMR):
+PMR involves systematically tensing and then relaxing muscle groups throughout the body.
+Sequence: Start from feet, move upward: feet → calves → thighs → abdomen → hands → arms → shoulders → neck → face.
+For each muscle group: Tense for 5 seconds → Release → Notice difference for 30 seconds.
+
+GROUNDING TECHNIQUE (5-4-3-2-1):
+For acute anxiety or panic, use sensory grounding:
+- 5 things you can SEE
+- 4 things you can TOUCH/FEEL
+- 3 things you can HEAR
+- 2 things you can SMELL
+- 1 thing you can TASTE
+This technique brings attention to the present moment and reduces catastrophic thinking.
+
+SECTION 8: MINDFULNESS-BASED CBT (MBCT)
+=========================================
+Mindfulness is the practice of paying attention to the present moment, non-judgmentally.
+
+CORE MINDFULNESS PRACTICES:
+1. Mindful Breathing: Focus attention solely on the breath. When mind wanders, gently return.
+2. Body Scan: Systematically bring awareness to each part of the body from toes to head.
+3. Mindful Observation: Observe thoughts as "events" in the mind, not facts.
+4. Mindful Walking: Focus on each step, the sensation of feet on the ground.
+
+MBCT PRINCIPLE - DECENTERING:
+Patients learn to observe negative thoughts with distance: "I am having the thought that I am worthless" rather than "I am worthless." This "decentering" or "defusion" reduces the emotional impact of negative thoughts.
+
+MINDFULNESS FOR ROMAN URDU/URDU SPEAKERS:
+- "Is waqt mein rehna seekhein" = Learn to stay in the present moment.
+- "Soch ko soch ki tarah dekhein, haqiqat ki tarah nahi" = See thoughts as thoughts, not reality.
+- "Saans ko mehsoos karein" = Feel your breath.

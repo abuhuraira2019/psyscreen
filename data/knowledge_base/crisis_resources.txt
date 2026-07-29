@@ -1,0 +1,106 @@
+CRISIS RESOURCES AND SAFETY PROTOCOL
+PsyScreen-RAG Emergency Response System
+Pakistan & International Mental Health Helplines
+================================================
+
+CRISIS PROTOCOL — IMMEDIATE RESPONSE REQUIRED
+==============================================
+If a user expresses suicidal ideation, self-harm thoughts, or a wish to die, the following protocol MUST be activated immediately:
+
+1. STOP all test administration immediately.
+2. Respond with warmth and WITHOUT judgment.
+3. Clearly acknowledge the user's distress.
+4. Provide helpline numbers immediately.
+5. Do NOT continue the mental health screening until the user confirms they are safe.
+6. Recommend immediate human professional contact.
+
+CRISIS RESPONSE MESSAGE TEMPLATE (English):
+"I hear that you're going through something very painful right now, and I'm concerned about your safety.
+Please know that you are not alone. Help is available right now.
+🆘 Please contact one of these helplines immediately:
+📞 Umang Pakistan: 0317-4288665 (24/7)
+📞 Rozan Counseling: 051-2890505
+📞 Rescue: 1122
+📞 Edhi Foundation: 115
+If you are in immediate danger, please go to your nearest hospital emergency room or call for emergency services."
+
+CRISIS RESPONSE MESSAGE TEMPLATE (Roman Urdu):
+"Aapki baat sun kar dil bhaari ho gaya. Aap akele nahi hain. Help mojood hai.
+🆘 Kripya abhi in helplines par rabta karein:
+📞 Umang Pakistan: 0317-4288665 (24 ghante, 7 din)
+📞 Rozan Counseling: 051-2890505
+📞 Rescue: 1122
+📞 Edhi Foundation: 115
+Agar aap abhi khud ko nuqsaan pahunchane wale hain, toh fori tor par nazdiki hospital jane ya emergency services bulane ka request hai."
+
+PAKISTAN MENTAL HEALTH HELPLINES:
+===================================
+1. UMANG PAKISTAN (Umang - Counseling Helpline)
+   Phone: 0317-4288665
+   Hours: Monday-Saturday, 9am-9pm
+   Services: Confidential telephone counseling, crisis support, referrals
+   Speciality: Urdu/Roman Urdu support available
+
+2. ROZAN COUNSELING HELPLINE
+   Phone: 051-2890505
+   Location: Islamabad/Rawalpindi based but national reach
+   Services: Counseling, mental health support
+
+3. RESCUE 1122 (Emergency Services Pakistan)
+   Phone: 1122
+   Availability: 24/7
+   Services: General emergency, can respond to mental health crises
+
+4. EDHI FOUNDATION
+   Phone: 115
+   Services: General emergency services and welfare support
+
+5. PAKISTAN INSTITUTE OF LIVING AND LEARNING (PILL)
+   Website: https://pill.org.pk
+   Services: Provides training for mental health professionals; referral directory
+
+6. TASKEEN (Mental Health Platform Pakistan)
+   Website: https://taskeen.org
+   Services: Online therapy, awareness, crisis support
+
+7. UMANG HELPLINE (Sindh)
+   Phone: 0800-22444 (Sindh-specific)
+   Services: Free helpline for mental health
+
+INTERNATIONAL CRISIS RESOURCES:
+=================================
+1. WHO Mental Health: https://www.who.int/mental-health
+2. Crisis Text Line (US): Text HOME to 741741
+3. International Association for Suicide Prevention: https://www.iasp.info/resources/Crisis_Centres/
+4. Befrienders Worldwide: https://www.befrienders.org
+
+GENERAL MENTAL HEALTH REFERRAL RESOURCES IN PAKISTAN:
+======================================================
+1. Pakistan Association for Mental Health (PAMH)
+   Website: http://www.pamh.org.pk
+   Services: Professional organization; referrals to qualified mental health professionals
+
+2. Institute of Psychiatry, Rawalpindi General Hospital
+   Contact: 051-9281363
+   Services: Inpatient and outpatient psychiatric care
+
+3. Fountain House Lahore
+   Phone: 042-35761999
+   Services: Psychosocial rehabilitation for serious mental illness
+
+4. Karachi Psychiatry Hospital (KPH)
+   Phone: 021-99261500
+   Services: Psychiatric inpatient and outpatient services
+
+SAFETY ASSESSMENT QUESTIONS (For Clinical Context Only):
+=========================================================
+When crisis is detected, a human clinician should assess:
+1. Have you had thoughts of suicide or self-harm?
+2. Do you have a plan? What is it?
+3. Do you have access to the means (e.g., medications, weapons)?
+4. Have you made any attempts before?
+5. Do you have any reasons to live? What are they?
+6. Is there someone with you right now?
+
+IMPORTANT DISCLAIMER:
+This AI system is NOT a crisis counselor. If a user expresses suicidal ideation or self-harm intent, the system must immediately provide emergency resources and STRONGLY encourage contact with a human professional. The AI system MUST NOT attempt to counsel the user through a suicidal crisis independently.

@@ -1,0 +1,139 @@
+CBT FOR DEPRESSION: COMPREHENSIVE TREATMENT PROTOCOLS
+Based on: Beck et al. (1979), Wenzel, Brown & Karlin (2011) VA CBT-D Manual,
+CCI Depression Workbook Modules
+=======================================================
+
+SECTION 1: UNDERSTANDING DEPRESSION IN CBT FRAMEWORK
+======================================================
+Depression in CBT is understood through the "Negative Cognitive Triad" (Aaron Beck, 1967):
+1. Negative view of SELF: "I am worthless, inadequate, a failure."
+2. Negative view of the WORLD: "Everything is unfair, the world is against me."
+3. Negative view of the FUTURE: "Nothing will ever get better. There is no hope."
+
+These three patterns of negative thinking maintain and deepen depression. CBT directly targets all three.
+
+COMMON NEGATIVE AUTOMATIC THOUGHTS IN DEPRESSION:
+- "I can't do anything right."
+- "No one cares about me."
+- "I'm a burden to everyone."
+- "Things will never improve."
+- "I don't deserve to be happy."
+- "I'm too tired to do anything."
+- "What's the point of trying?"
+
+ROMAN URDU NEGATIVE AUTOMATIC THOUGHTS IN DEPRESSION:
+- "Main kisi kaam ka nahi hoon."
+- "Koi mujhe pasand nahi karta."
+- "Main sabke liye bojh hoon."
+- "Sab theek nahi hoga kabhi."
+- "Koshish karne ka kya faida."
+
+SECTION 2: BEHAVIORAL ACTIVATION FOR DEPRESSION - DETAILED PROTOCOL
+=====================================================================
+Behavioral Activation (BA) is considered the MOST EFFECTIVE behavioral intervention for depression.
+
+PHASE 1 - ACTIVITY MONITORING (Week 1):
+Patient tracks every activity for one full week using an Activity Diary:
+- What they did each hour
+- Mood rating (0-10, where 0=worst mood, 10=best mood)
+- Pleasure rating (0-10)
+- Mastery/accomplishment rating (0-10)
+
+Analysis questions after week 1:
+- What activities were associated with better mood?
+- What times of day were mood best/worst?
+- How much time was spent in bed or avoiding activities?
+
+PHASE 2 - ACTIVITY SCHEDULING (Weeks 2-4):
+Create a weekly activity schedule with:
+- 2-3 pleasurable activities per day (things you used to enjoy or might enjoy)
+- 1-2 mastery activities per day (tasks that give sense of achievement)
+- Gradual increase in social interactions
+- Regular sleep and meal times (routine is crucial)
+
+IMPORTANT: Schedule activities based on PLAN, not mood. In depression, motivation follows action, not the reverse.
+
+GRADED TASK ASSIGNMENT:
+For tasks that feel overwhelming, break them into the smallest possible steps.
+Example - "Clean the house" (overwhelming) becomes:
+Step 1: Stand up and go to the kitchen (2 minutes)
+Step 2: Clear one small section of the counter (5 minutes)
+Step 3: Wash 3 dishes (5 minutes)
+Step 4: Rest and acknowledge the achievement.
+
+ROMAN URDU GUIDANCE FOR BEHAVIORAL ACTIVATION:
+- "Uthiye aur ek chota kaam karein. Mehnat ke baad achha lagta hai."
+- "Aaj ek purana shauq dobara try karein."
+- "Roz ek baar ghar se bahar zaroor niklein, chahe thodi der ke liye."
+- "Namaz, tilawat, aur zikr mood behter karte hain."
+
+SECTION 3: COGNITIVE RESTRUCTURING FOR DEPRESSION
+===================================================
+
+IDENTIFYING DEPRESSION-SPECIFIC COGNITIVE DISTORTIONS:
+
+1. ALL-OR-NOTHING THINKING (Black and White Thinking):
+Definition: Seeing things in absolute, extreme categories.
+Depression example: "I made one mistake at work. I am a complete failure."
+Challenge: "Is it truly all-or-nothing? Can one mistake define my entire worth?"
+Balanced thought: "I made one mistake. Everyone makes mistakes. I can learn from this and do better."
+
+2. CATASTROPHIZING (Magnification):
+Definition: Exaggerating the importance of problems or imperfections.
+Depression example: "I forgot to call my friend. She will never speak to me again."
+Challenge: "What is the most realistic outcome? Am I exaggerating this?"
+Balanced thought: "I forgot to call. I'll call her now and apologize. She will likely understand."
+
+3. OVERGENERALIZATION:
+Definition: Drawing sweeping conclusions based on a single event.
+Depression example: "I failed this test. I always fail. I'll never succeed in anything."
+Challenge: "Does one failure mean I always fail? What evidence contradicts this?"
+Balanced thought: "I failed this specific test. That's disappointing, but it doesn't mean I always fail."
+
+4. MENTAL FILTER (Selective Abstraction):
+Definition: Focusing exclusively on one negative detail while ignoring the positive.
+Depression example: One critical comment ruins an otherwise successful presentation.
+Challenge: "Am I ignoring all the positive feedback? What is the full picture?"
+
+5. DISQUALIFYING THE POSITIVE:
+Definition: Rejecting positive experiences by insisting they "don't count."
+Depression example: "My boss praised my work, but he was just being nice. He didn't really mean it."
+Challenge: "What evidence do I have that the positive is not real?"
+
+6. SHOULD STATEMENTS:
+Definition: Using "should," "must," "have to" in rigid, demanding ways.
+Depression example: "I should always be productive. I must never let others down."
+Challenge: "Where did this rule come from? Is it realistic and flexible?"
+Balanced thought: "I prefer to be productive, but rest and imperfection are human and acceptable."
+
+7. PERSONALIZATION:
+Definition: Taking excessive responsibility for external events.
+Depression example: "My friend seems upset. It must be something I did."
+Challenge: "Am I taking responsibility for things outside my control? What other explanations exist?"
+
+SECTION 4: BEHAVIORAL EXPERIMENTS FOR DEPRESSION
+===================================================
+Behavioral experiments test the validity of negative beliefs through real-world action.
+
+EXAMPLE BEHAVIORAL EXPERIMENT:
+Negative belief: "If I go to the family gathering, I'll feel worse."
+Experiment: Attend for 30 minutes only.
+Prediction: I will feel worse (rate current mood: 4/10).
+Outcome after experiment: Mood was actually 6/10 during gathering.
+Conclusion: The prediction was wrong. Social contact can help, not hurt.
+
+SECTION 5: PHQ-9 SCORE-BASED CBT RECOMMENDATIONS
+===================================================
+PHQ-9 Score 0-4 (Minimal): Monitor. Provide psychoeducation on mood hygiene, sleep, exercise.
+PHQ-9 Score 5-9 (Mild): Behavioral Activation, thought records, self-help CBT workbooks.
+PHQ-9 Score 10-14 (Moderate): Structured CBT program (12 sessions), activity scheduling, cognitive restructuring.
+PHQ-9 Score 15-19 (Moderately Severe): Combination of psychotherapy + consider pharmacotherapy evaluation.
+PHQ-9 Score 20-27 (Severe): Urgent referral to mental health professional. Combined pharmacotherapy + CBT.
+
+SECTION 6: SELF-HELP RESOURCES FOR DEPRESSION
+===============================================
+1. CCI (Centre for Clinical Interventions) - "Dealing with Depression" workbook: https://www.cci.health.wa.gov.au
+2. NHS Self-Help: https://www.nhs.uk/mental-health/self-help/
+3. Mind UK: https://www.mind.org.uk/information-support/types-of-mental-health-problems/depression/
+4. Pakistan Institute of Living and Learning (PILL): https://pill.org.pk
+5. "Feeling Good" by Dr. David Burns (self-help book based on CBT)
