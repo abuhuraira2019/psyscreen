@@ -34,21 +34,24 @@ except ImportError:
     sys.exit(1)
 
 # ─────────────────────────────────────────────────────────────────────────────
-# 1. Load API Key
+# 1. API Key Helper
 # ─────────────────────────────────────────────────────────────────────────────
-load_dotenv()
-api_key = os.getenv("GEMINI_API_KEY")
-
-if not api_key:
-    print("[ERROR] GEMINI_API_KEY not found in .env file.")
-    print("    Copy .env.example to .env and add your key from https://aistudio.google.com")
-    sys.exit(1)
-
-print("[INFO] API Key loaded.")
+def get_api_key(provided_key: str = None) -> str:
+    if provided_key:
+        return provided_key
+    load_dotenv(override=True)
+    key = os.getenv("GEMINI_API_KEY")
+    if not key:
+        try:
+            import streamlit as st
+            key = st.secrets.get("GEMINI_API_KEY")
+        except Exception:
+            key = None
+    return key
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# 2. Custom Embedding Function (with batch support)
+# 2. Custom Embedding Function (with batch & model fallback support)
 # ─────────────────────────────────────────────────────────────────────────────
 class GeminiEmbeddingFunction(EmbeddingFunction):
     def __init__(self, key: str):
@@ -65,32 +68,42 @@ class GeminiEmbeddingFunction(EmbeddingFunction):
             retries = 10
             success = False
             last_error = None
+            models_to_try = ["text-embedding-004", "gemini-embedding-001"]
+
             while retries > 0:
-                try:
-                    response = self.client.models.embed_content(
-                        model="gemini-embedding-001",
-                        contents=batch,
-                    )
-                    all_embeddings.extend([e.values for e in response.embeddings])
-                    success = True
+                for model_name in models_to_try:
+                    try:
+                        response = self.client.models.embed_content(
+                            model=model_name,
+                            contents=batch,
+                        )
+                        all_embeddings.extend([e.values for e in response.embeddings])
+                        success = True
+                        break
+                    except Exception as e:
+                        last_error = e
+                        if "429" in str(e) or "quota" in str(e).lower() or "limit" in str(e).lower():
+                            print("     [RATE LIMIT] Waiting 20 seconds before retrying...")
+                            time.sleep(20)
+                            retries -= 1
+                            break
+                        elif "404" in str(e) or "not found" in str(e).lower():
+                            # Try next model name
+                            continue
+                        else:
+                            raise e
+
+                if success:
                     break
-                except Exception as e:
-                    last_error = e
-                    if "429" in str(e) or "quota" in str(e).lower() or "limit" in str(e).lower():
-                        print("     [RATE LIMIT] Waiting 30 seconds before retrying...")
-                        time.sleep(30)
-                        retries -= 1
-                    else:
-                        raise e
-            
+
             if not success:
-                print("[ERROR] Failed to embed batch after 10 attempts.")
+                print("[ERROR] Failed to embed batch.")
                 if last_error:
                     raise last_error
                 else:
                     raise Exception("Failed to embed batch")
 
-            time.sleep(10)  # Sleep between batches to respect rate limits
+            time.sleep(1)  # Short pause between batches
 
         return all_embeddings
 
@@ -164,9 +177,14 @@ def load_pdf_file(filepath: str) -> tuple[str, dict]:
 # ─────────────────────────────────────────────────────────────────────────────
 # 5. Main Build Process
 # ─────────────────────────────────────────────────────────────────────────────
-def build_database():
+def build_database(api_key: str = None):
     print("\n[BUILDER] PsyScreen-RAG - Knowledge Base Builder")
     print("=" * 50)
+
+    key = get_api_key(api_key)
+    if not key:
+        print("[ERROR] GEMINI_API_KEY not found.")
+        raise ValueError("GEMINI_API_KEY not found. Please provide a valid Gemini API key.")
 
     # Collect all documents
     all_chunks = []
@@ -224,7 +242,7 @@ def build_database():
 
     # ─── Initialize ChromaDB ───────────────────────────────────────────────
     print("\n[DB] Initializing ChromaDB...")
-    embedder = GeminiEmbeddingFunction(key=api_key)
+    embedder = GeminiEmbeddingFunction(key=key)
     db_client = chromadb.PersistentClient(path="./chroma_db")
 
     # Delete existing collection to rebuild fresh

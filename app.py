@@ -420,11 +420,14 @@ div[data-baseweb="select"] > div {
 # ═══════════════════════════════════════════════════════════════
 # 2. API KEY LOADING
 # ═══════════════════════════════════════════════════════════════
-try:
-    api_key = st.secrets["GEMINI_API_KEY"]
-except (KeyError, FileNotFoundError):
-    load_dotenv()
-    api_key = os.getenv("GEMINI_API_KEY")
+load_dotenv(override=True)
+api_key = os.getenv("GEMINI_API_KEY")
+
+if not api_key:
+    try:
+        api_key = st.secrets.get("GEMINI_API_KEY")
+    except Exception:
+        api_key = None
 
 if not api_key:
     st.markdown("""
@@ -530,36 +533,60 @@ class GeminiEmbeddingFunction(EmbeddingFunction):
         self.embed_client = genai.Client(api_key=key)
 
     def __call__(self, input: Documents) -> Embeddings:
-        response = self.embed_client.models.embed_content(
-            model='gemini-embedding-001',
-            contents=input,
-        )
-        return [e.values for e in response.embeddings]
+        models_to_try = ["text-embedding-004", "gemini-embedding-001"]
+        last_err = None
+        for model_name in models_to_try:
+            try:
+                response = self.embed_client.models.embed_content(
+                    model=model_name,
+                    contents=input,
+                )
+                return [e.values for e in response.embeddings]
+            except Exception as e:
+                last_err = e
+                if "404" in str(e) or "not found" in str(e).lower():
+                    continue
+                raise e
+        if last_err:
+            raise last_err
 
 
 # ═══════════════════════════════════════════════════════════════
-# 5. RAG — CHROMADB CONNECTION
+# 5. RAG — CHROMADB CONNECTION (Auto-builds if collection is missing)
 # ═══════════════════════════════════════════════════════════════
 @st.cache_resource(show_spinner="🔗 Connecting to Clinical Knowledge Base...")
 def get_chroma_collection(key: str):
     db_client = chromadb.PersistentClient(path="./chroma_db")
     embedder = GeminiEmbeddingFunction(key=key)
-    return db_client.get_collection(name="clinical_manuals", embedding_function=embedder)
+    try:
+        return db_client.get_collection(name="clinical_manuals", embedding_function=embedder)
+    except Exception:
+        # Auto-build database if missing (ideal for Streamlit Cloud deployment)
+        try:
+            from build_db import build_database
+            with st.spinner("⚙️ Building Knowledge Base for the first time... This will take a moment."):
+                build_database(api_key=key)
+            return db_client.get_collection(name="clinical_manuals", embedding_function=embedder)
+        except Exception as build_err:
+            raise build_err
 
 
 try:
     collection = get_chroma_collection(api_key)
 except Exception as e:
     st.error(f"""
-    **⚠️ ChromaDB Collection Not Found**
+    **🚨 Clinical Knowledge Base Error**
     
-    The knowledge base hasn't been built yet. Please run:
-    ```
-    python build_db.py
-    ```
-    Then restart the app.
+    Could not connect to or build the ChromaDB vector database.
     
-    *Error: {e}*
+    *Details:* `{e}`
+    
+    **Troubleshooting:**
+    1. Ensure your `GEMINI_API_KEY` is valid (get a free key at [Google AI Studio](https://aistudio.google.com/app/apikey)).
+    2. If deploying to **Streamlit Community Cloud**, add your API key in **App Settings -> Secrets**:
+       ```toml
+       GEMINI_API_KEY = "AIzaSy..."
+       ```
     """)
     st.stop()
 
