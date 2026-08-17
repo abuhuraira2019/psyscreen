@@ -17,9 +17,6 @@ venv/
 env/
 ENV/
 
-# ChromaDB vector store (can be rebuilt using python build_db.py)
-chroma_db/
-
 # IDE / System metadata
 .vscode/
 .idea/

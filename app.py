@@ -574,8 +574,32 @@ def get_chroma_collection(key: str):
 try:
     collection = get_chroma_collection(api_key)
 except Exception as e:
-    st.error(f"🚨 **Clinical Knowledge Base Error**: Could not connect to ChromaDB database. Details: `{e}`")
-    st.stop()
+    err_str = str(e)
+    if "401" in err_str or "UNAUTHENTICATED" in err_str or "invalid authentication" in err_str.lower():
+        st.markdown("""
+        <div class="header-banner">
+            <h1>🧠 PsyScreen-RAG</h1>
+            <p>Clinical Assessment Portal</p>
+        </div>
+        """, unsafe_allow_html=True)
+        st.error("🚨 **Gemini API Key Authentication Error (401 Unauthenticated)**")
+        st.markdown("""
+        The `GEMINI_API_KEY` provided in environment / Streamlit Cloud secrets is invalid or expired.
+
+        **How to fix on Streamlit Cloud:**
+        1. Get a free API key from [Google AI Studio](https://aistudio.google.com/app/apikey).
+        2. Open your **Streamlit Cloud Dashboard**.
+        3. Go to **Settings → Secrets**.
+        4. Add your valid key:
+           ```toml
+           GEMINI_API_KEY = "AIzaSy..."
+           ```
+        5. Save and reload the app.
+        """)
+        st.stop()
+    else:
+        st.error(f"🚨 **Clinical Knowledge Base Error**: Could not connect to ChromaDB database. Details: `{e}`")
+        st.stop()
 
 
 # ═══════════════════════════════════════════════════════════════
