@@ -53,8 +53,19 @@ html, body, [class*="css"] {
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-/* ── CRITICAL READABILITY OVERRIDE ── */
-.stApp, .stApp p, .stApp span, .stApp div, .stApp label,
+/* ── ENFORCED PREMIUM DARK THEME ── */
+.stApp {
+    background: 
+        radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.18) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(168, 85, 247, 0.18) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.10) 0%, transparent 60%),
+        linear-gradient(135deg, #090d16 0%, #0f172a 50%, #1e1b4b 100%) !important;
+    background-attachment: fixed !important;
+    color: #f8fafc !important;
+}
+
+/* ── Global Text Contrast & Readability (Dark Theme) ── */
+.stApp, .stApp p, .stApp span, .stApp div, .stApp label, .stApp h1, .stApp h2, .stApp h3, .stApp h4,
 [data-testid="stMarkdownContainer"],
 [data-testid="stMarkdownContainer"] p,
 [data-testid="stMarkdownContainer"] span,
@@ -65,123 +76,57 @@ html, body, [class*="css"] {
     -webkit-text-fill-color: #f8fafc !important;
 }
 
-/* ── App Deep Mesh Gradient Background ── */
-.stApp {
-    background: 
-        radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
-        radial-gradient(circle at 90% 80%, rgba(168, 85, 247, 0.15) 0%, transparent 40%),
-        radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.08) 0%, transparent 60%),
-        linear-gradient(135deg, #090d16 0%, #0f172a 50%, #1e1b4b 100%);
-    background-attachment: fixed;
+/* ── Sidebar Dark Theme ── */
+[data-testid="stSidebar"], section[data-testid="stSidebar"] {
+    background: #090d16 !important;
+    background-color: #090d16 !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
-/* ── Main Container Align Left ── */
-.block-container {
-    padding: 1.5rem 2rem 3rem 1.5rem !important;
-    max-width: 960px !important;
-    margin-left: 0 !important;
-    margin-right: auto !important;
-}
-
-/* ── Chat Messages Align Left ── */
-[data-testid="stChatMessage"],
-.stChatMessage {
-    margin-left: 0 !important;
-    margin-right: auto !important;
-    max-width: 100% !important;
-    text-align: left !important;
-}
-
-[data-testid="stChatMessageContent"] {
-    text-align: left !important;
-}
-
-/* ── Custom Scrollbar ── */
-::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-}
-::-webkit-scrollbar-track {
-    background: rgba(15, 23, 42, 0.6);
-}
-::-webkit-scrollbar-thumb {
-    background: rgba(99, 102, 241, 0.4);
-    border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-    background: rgba(129, 140, 248, 0.7);
-}
-
-/* ── Header Banner (Glassmorphic Hero) ── */
+/* ── Header Banner (Dark Glassmorphism) ── */
 .header-banner {
-    background: rgba(30, 41, 59, 0.55);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 20px;
-    padding: 1.5rem 1.8rem;
-    margin-bottom: 1.5rem;
-    text-align: left;
-    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    background: rgba(30, 41, 59, 0.65) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 20px !important;
+    padding: 1.5rem 1.8rem !important;
+    margin-bottom: 1.5rem !important;
+    text-align: left !important;
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
 }
 .header-banner h1 {
     font-size: 1.8rem !important;
     font-weight: 800 !important;
-    background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+    background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%) !important;
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
     margin: 0 0 0.2rem 0 !important;
 }
 .header-banner p {
     color: #94a3b8 !important;
+    -webkit-text-fill-color: #94a3b8 !important;
     font-size: 0.92rem !important;
     margin: 0 !important;
 }
 
-/* ── Badges ── */
-.badge {
-    display: inline-block;
-    padding: 0.35rem 0.85rem;
-    border-radius: 50px;
-    font-size: 0.78rem;
-    font-weight: 700;
-}
-.badge-minimal { background: rgba(34, 197, 94, 0.2); color: #4ade80 !important; border: 1px solid rgba(34, 197, 94, 0.4); }
-.badge-mild { background: rgba(234, 179, 8, 0.2); color: #fde047 !important; border: 1px solid rgba(234, 179, 8, 0.4); }
-.badge-moderate { background: rgba(249, 115, 22, 0.2); color: #fb923c !important; border: 1px solid rgba(249, 115, 22, 0.4); }
-.badge-severe { background: rgba(239, 68, 68, 0.2); color: #fca5a5 !important; border: 1px solid rgba(239, 68, 68, 0.4); }
-
-.sla-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(245, 158, 11, 0.15);
-    color: #fbbf24 !important;
-    border: 1px solid rgba(245, 158, 11, 0.4);
-    border-radius: 8px;
-    padding: 0.3rem 0.75rem;
-    font-size: 0.8rem;
-    font-weight: 600;
-}
-.sla-overdue {
-    background: rgba(239, 68, 68, 0.2);
-    color: #fca5a5 !important;
-    border: 1px solid rgba(239, 68, 68, 0.4);
-}
-
-/* ── Doctor Card Style ── */
+/* ── Doctor Cards (Dark Glassmorphism) ── */
 .doctor-card {
-    background: rgba(30, 41, 59, 0.6);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(129, 140, 248, 0.25);
-    border-radius: 16px;
-    padding: 1.2rem 1.4rem;
-    margin-bottom: 1.2rem;
-    transition: all 0.2s ease;
+    background: rgba(30, 41, 59, 0.6) !important;
+    backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(129, 140, 248, 0.25) !important;
+    border-radius: 16px !important;
+    padding: 1.2rem 1.4rem !important;
+    margin-bottom: 1.2rem !important;
+    transition: all 0.2s ease !important;
+}
+.doctor-card div {
+    color: #f8fafc !important;
+    -webkit-text-fill-color: #f8fafc !important;
 }
 .doctor-card:hover {
-    border-color: #818cf8;
-    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.2);
+    border-color: #818cf8 !important;
+    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.2) !important;
 }
 
 /* ── Streamlit Bottom Input Alignment ── */
@@ -315,7 +260,7 @@ PSYCHOLOGISTS = {
             "marham": "https://www.marham.pk/online-consultation/psychologist/lahore/dr-amina-iftikhar-bhatti",
             "oladoc": "https://oladoc.com/pakistan/lahore/psychologist/dr-amina-iftikhar-bhatti"
         },
-        "picture_url": "https://img.marham.pk/doctors/13214/dr-amina-iftikhar-bhatti-psychologist-lahore-37_170x170.jpg",
+        "picture_url": "https://staticconnect-new.marham.pk/assets/doctors/6771/dr-amina-iftikhar-bhatti-psychologist-lahore-53_450X450.webp",
         "bio": "Dr. Amina Iftikhar Bhatti is a renowned Senior Clinical Psychologist in Lahore with 16+ years of experience. She specializes in mood disorders, eating disorders, personality disorders, and relationship therapy using evidence-based CBT and DBT frameworks."
     },
     "dr-tahira-rubab-hafeez": {
@@ -483,19 +428,22 @@ GAD7_QUESTIONS_LANG = {
 }
 
 SCORE_RESPONSE_MAP = {
+    # English
     "not at all": 0, "no": 0, "none": 0,
     "several days": 1, "sometimes": 1, "some days": 1,
     "more than half the days": 2, "more than half": 2, "mostly": 2, "often": 2,
     "nearly every day": 3, "every day": 3, "always": 3, "daily": 3,
     
-    "bilkul nahi": 0, "nahi": 0, "na": 0,
-    "kuch din": 1, "kuch baar": 1, "kabhi kabhi": 1, "thoda": 1, "kbhi kbhi": 1,
-    "adhe se zyada": 2, "zyada tar": 2, "aksar": 2, "half": 2,
-    "hamesha": 3, "har roz": 3, "roz": 3, "baar baar": 3,
+    # Roman Urdu
+    "bilkul nahi": 0, "bilkul nhi": 0, "nahi": 0, "nhi": 0, "nahin": 0, "na": 0,
+    "kuch din": 1, "kuchdin": 1, "kuch baar": 1, "kabhi kabhi": 1, "kbhi kbhi": 1, "thoda": 1, "kuch": 1, "kch": 1,
+    "adhe se zyada": 2, "zyada tar": 2, "ziyada tar": 2, "zyadatar": 2, "ziyadatar": 2, "zyada": 2, "ziyada": 2, "aksar": 2, "half": 2,
+    "hamesha": 3, "har roz": 3, "harroz": 3, "roz": 3, "baar baar": 3,
     
+    # Urdu
     "بالکل نہیں": 0, "نہیں": 0, "نا": 0,
-    "کچھ دن": 1, "کچھ بار": 1, "کبھی کبھی": 1, "تھوڑا": 1,
-    "زیادہ تر": 2, "آدھے سے زیادہ": 2, "اکثر": 2,
+    "کچھ دن": 1, "کچھ بار": 1, "کبھی کبھی": 1, "تھوڑا": 1, "کچھ": 1,
+    "زیادہ تر": 2, "آدھے سے زیادہ": 2, "اکثر": 2, "زیادہ": 2,
     "ہر روز": 3, "ہمیشہ": 3, "روز": 3, "بار بار": 3,
 
     "0": 0, "1": 1, "2": 2, "3": 3,
@@ -605,6 +553,22 @@ except Exception as e:
 # ═══════════════════════════════════════════════════════════════
 # 5. PDF REPORT GENERATOR & EMAIL NOTIFIER
 # ═══════════════════════════════════════════════════════════════
+def clean_pdf_text(text: str) -> str:
+    """Sanitize strings for ReportLab PDF generation to prevent Unicode encoding errors."""
+    if not text:
+        return ""
+    str_val = str(text)
+    if str_val == "اردو":
+        return "Urdu (اردو)"
+    cleaned = []
+    for ch in str_val:
+        if ord(ch) < 256:
+            cleaned.append(ch)
+        else:
+            cleaned.append(f"&#{ord(ch)};")
+    return "".join(cleaned)
+
+
 def generate_pdf_report(report_data: dict) -> bytes:
     """Generate a clean, professional clinical PDF report using ReportLab."""
     buffer = io.BytesIO()
@@ -656,14 +620,19 @@ def generate_pdf_report(report_data: dict) -> bytes:
     story.append(Paragraph("Confidential Clinical Evaluation Record • Developed for MS Thesis Research", subtitle_style))
     story.append(HRFlowable(width="100%", thickness=1.5, color=colors.HexColor("#6366f1"), spaceAfter=12))
     
+    p_name = clean_pdf_text(report_data.get('patient_name', 'Patient'))
+    p_email = clean_pdf_text(report_data.get('patient_email', 'N/A'))
+    doc_name = clean_pdf_text(report_data.get('psychologist_name', 'N/A'))
+    lang_txt = clean_pdf_text(report_data.get('language', 'English'))
+
     # Patient & Meta Information Table
     patient_info = [
-        [Paragraph(f"<b>Patient Name:</b> {report_data.get('patient_name', 'Patient')}", body_style),
+        [Paragraph(f"<b>Patient Name:</b> {p_name}", body_style),
          Paragraph(f"<b>Report ID:</b> {report_data.get('id', 'N/A')}", body_style)],
-        [Paragraph(f"<b>Patient Email:</b> {report_data.get('patient_email', 'N/A')}", body_style),
-         Paragraph(f"<b>Assigned Doctor:</b> {report_data.get('psychologist_name', 'N/A')}", body_style)],
+        [Paragraph(f"<b>Patient Email:</b> {p_email}", body_style),
+         Paragraph(f"<b>Assigned Doctor:</b> {doc_name}", body_style)],
         [Paragraph(f"<b>Assessment Date:</b> {report_data.get('timestamp', datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')}", body_style),
-         Paragraph(f"<b>Language:</b> {report_data.get('language', 'English')}", body_style)]
+         Paragraph(f"<b>Language:</b> {lang_txt}", body_style)]
     ]
     t_info = Table(patient_info, colWidths=[270, 270])
     t_info.setStyle(TableStyle([
@@ -679,8 +648,8 @@ def generate_pdf_report(report_data: dict) -> bytes:
     story.append(Paragraph("Clinical Metrics & Severity Summary", heading_style))
     metrics_data = [
         [Paragraph("<b>Assessment Scale</b>", body_style), Paragraph("<b>Total Score</b>", body_style), Paragraph("<b>Severity Level</b>", body_style)],
-        [Paragraph("PHQ-9 Mood Assessment", body_style), Paragraph(f"{report_data.get('phq9_total', 0)} / 27", body_style), Paragraph(f"{report_data.get('phq9_sev', ('N/A',''))[0]}", body_style)],
-        [Paragraph("GAD-7 Tension Assessment", body_style), Paragraph(f"{report_data.get('gad7_total', 0)} / 21", body_style), Paragraph(f"{report_data.get('gad7_sev', ('N/A',''))[0]}", body_style)]
+        [Paragraph("PHQ-9 Mood Assessment", body_style), Paragraph(f"{report_data.get('phq9_total', 0)} / 27", body_style), Paragraph(f"{clean_pdf_text(report_data.get('phq9_sev', ('N/A',''))[0])}", body_style)],
+        [Paragraph("GAD-7 Tension Assessment", body_style), Paragraph(f"{report_data.get('gad7_total', 0)} / 21", body_style), Paragraph(f"{clean_pdf_text(report_data.get('gad7_sev', ('N/A',''))[0])}", body_style)]
     ]
     t_metrics = Table(metrics_data, colWidths=[200, 140, 200])
     t_metrics.setStyle(TableStyle([
@@ -695,14 +664,14 @@ def generate_pdf_report(report_data: dict) -> bytes:
     # CBT Recommendations
     story.append(Paragraph("CBT Psychoeducational Guidance", heading_style))
     cbt_text = get_cbt_recommendations(report_data.get('phq9_total'), report_data.get('gad7_total'))
-    story.append(Paragraph(cbt_text.replace("\n", "<br/>"), body_style))
+    story.append(Paragraph(clean_pdf_text(cbt_text).replace("\n", "<br/>"), body_style))
     story.append(Spacer(1, 12))
     
     # Doctor Feedback if reviewed
     if report_data.get('psychologist_notes'):
         story.append(Paragraph("Attending Doctor Clinical Verdict & Notes", heading_style))
-        story.append(Paragraph(f"<b>Status:</b> {report_data.get('status')}", body_style))
-        story.append(Paragraph(f"<b>Doctor Feedback:</b> {report_data.get('psychologist_notes')}", body_style))
+        story.append(Paragraph(f"<b>Status:</b> {clean_pdf_text(report_data.get('status'))}", body_style))
+        story.append(Paragraph(f"<b>Doctor Feedback:</b> {clean_pdf_text(report_data.get('psychologist_notes'))}", body_style))
         story.append(Spacer(1, 12))
 
     # Disclaimer Footer
@@ -794,12 +763,28 @@ def check_crisis(text: str) -> bool:
 
 def parse_score_from_response(response_text: str) -> int | None:
     text_lower = response_text.lower().strip()
-    for key, val in SCORE_RESPONSE_MAP.items():
-        if key in text_lower:
-            return val
+    
+    # Map Eastern/Western Arabic & Urdu numerals to ASCII digits
+    urdu_digit_map = {
+        '۰': '0', '۱': '1', '۲': '2', '۳': '3',
+        '٠': '0', '١': '1', '٢': '2', '٣': '3'
+    }
+    for u_digit, ascii_digit in urdu_digit_map.items():
+        text_lower = text_lower.replace(u_digit, ascii_digit)
+
+    # First check explicit ASCII digit match
     match = re.search(r'\b([0-3])\b', text_lower)
     if match:
         return int(match.group(1))
+
+    # Then check dictionary matches
+    for key, val in SCORE_RESPONSE_MAP.items():
+        if len(key) <= 2:
+            if re.search(r'\b' + re.escape(key) + r'\b', text_lower):
+                return val
+        elif key in text_lower:
+            return val
+
     return None
 
 
@@ -1057,12 +1042,11 @@ def advance_state(user_input: str):
             st.session_state.phq9_scores.append(score)
             if q_idx == 8 and score >= 1:
                 st.session_state.crisis_triggered = True
-                st.session_state.state = "CRISIS"
-                bot_msg = ("I want to make sure you're safe. You mentioned having thoughts about self-harm. "
-                           "Please know you are not alone. 💙\n\n"
-                           "🆘 **Helplines:** Umang: **0317-4288665** (24/7) | Rescue: **1122**")
+                bot_msg = ("🆘 **Safety Notice & Support Helplines:**\n"
+                           "You indicated experiencing thoughts of self-harm or distress. Please know support is available 24/7:\n"
+                           "📞 Umang Pakistan: **0317-4288665** | Rescue: **1122**\n\n"
+                           "We are continuing the assessment so your assigned Clinical Psychologist receives your complete 16-question report.")
                 add_message("assistant", bot_msg)
-                return
         else:
             st.session_state.gad7_scores.append(score)
 
@@ -1383,28 +1367,30 @@ if st.session_state.app_mode == "patient":
             header_txt = "👇 <strong>Jawab select karein:</strong>"
         elif lang == "اردو":
             b_labels = ["🟢 بالکل نہیں (0)", "🟡 کچھ دن (1)", "🟠 زیادہ تر (2)", "🔴 ہر روز (3)"]
-            b_vals = ["Not at all", "Several days", "More than half", "Nearly every day"]
+            b_vals = ["بالکل نہیں", "کچھ دن", "زیادہ تر", "ہر روز"]
             header_txt = "👇 <strong>جواب منتخب کریں:</strong>"
         else:
             b_labels = ["🟢 Not at all (0)", "🟡 Several days (1)", "🟠 More than half (2)", "🔴 Nearly every day (3)"]
             b_vals = ["Not at all", "Several days", "More than half the days", "Nearly every day"]
+            header_txt = "👇 <strong>Select your response:</strong>"
 
         st.markdown(f"<p style='color:#94a3b8;font-size:0.85rem;margin:0.5rem 0;'>{header_txt}</p>", unsafe_allow_html=True)
         col1, col2, col3, col4 = st.columns(4)
+        q_key = f"q_{st.session_state.current_test}_{st.session_state.current_q_index}"
 
-        if col1.button(b_labels[0], use_container_width=True):
+        if col1.button(b_labels[0], key=f"{q_key}_0", use_container_width=True):
             add_message("user", b_vals[0])
             advance_state(b_vals[0])
             st.rerun()
-        if col2.button(b_labels[1], use_container_width=True):
+        if col2.button(b_labels[1], key=f"{q_key}_1", use_container_width=True):
             add_message("user", b_vals[1])
             advance_state(b_vals[1])
             st.rerun()
-        if col3.button(b_labels[2], use_container_width=True):
+        if col3.button(b_labels[2], key=f"{q_key}_2", use_container_width=True):
             add_message("user", b_vals[2])
             advance_state(b_vals[2])
             st.rerun()
-        if col4.button(b_labels[3], use_container_width=True):
+        if col4.button(b_labels[3], key=f"{q_key}_3", use_container_width=True):
             add_message("user", b_vals[3])
             advance_state(b_vals[3])
             st.rerun()
