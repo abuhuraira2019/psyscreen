@@ -1598,11 +1598,10 @@ else:
                             key=f"verdict_radio_{rpt['id']}"
                         )
 
-                        default_note = "Your screening responses indicate healthy coping. Continue maintaining balanced routines." if "Normal" in verdict else "Based on your screening responses, a structured 1-on-1 CBT consultation is recommended."
-                        
                         feedback_note = st.text_area(
                             "Clinical Feedback Note (Will be emailed to patient):",
-                            value=default_note,
+                            value="",
+                            placeholder="Enter your custom clinical feedback note here...",
                             key=f"feedback_{rpt['id']}"
                         )
 
