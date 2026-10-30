@@ -663,9 +663,10 @@ def generate_pdf_report(report_data: dict) -> bytes:
     
     # CBT Recommendations
     story.append(Paragraph("CBT Psychoeducational Guidance", heading_style))
-    cbt_text = get_cbt_recommendations(report_data.get('phq9_total'), report_data.get('gad7_total'))
-    story.append(Paragraph(clean_pdf_text(cbt_text).replace("\n", "<br/>"), body_style))
-    story.append(Spacer(1, 12))
+    for _emoji, cbt_title, cbt_body in get_cbt_guidance(report_data.get('phq9_total'), report_data.get('gad7_total')):
+        story.append(Paragraph(f"<b>{clean_pdf_text(cbt_title)}:</b> {clean_pdf_text(cbt_body)}", body_style))
+        story.append(Spacer(1, 4))
+    story.append(Spacer(1, 8))
     
     # Doctor Feedback if reviewed
     if report_data.get('psychologist_notes'):
@@ -684,17 +685,19 @@ def generate_pdf_report(report_data: dict) -> bytes:
     return buffer.getvalue()
 
 
-def send_email_notification(recipient_email: str, patient_name: str, doc_name: str, verdict: str, notes: str) -> dict:
-    """Send review notification email from msdsf23m027@pucit.edu.pk and log to session outbox."""
+def send_email_notification(recipient_email: str, patient_name: str, doc_name: str, verdict: str, notes: str,
+                            pdf_bytes: bytes | None = None, pdf_filename: str = "psyscreen_report.pdf") -> dict:
+    """Send review notification email (with the reviewed PDF report attached) from msdsf23m027@pucit.edu.pk and log to session outbox."""
     sender_email = "msdsf23m027@pucit.edu.pk"
-    
+
     subject = f"Psychologist Review Complete — PsyScreen-RAG ({doc_name})"
     body = (
         f"Dear {patient_name},\n\n"
         f"Your mental health assessment report has been reviewed by {doc_name}.\n\n"
         f"📌 Clinical Verdict: {verdict}\n"
         f"💬 Doctor Feedback: {notes}\n\n"
-        f"You can view your full report and book a 1-on-1 consultation by visiting the PsyScreen-RAG Patient Portal.\n\n"
+        + (f"📎 Your reviewed report is attached as a PDF ({pdf_filename}).\n\n" if pdf_bytes else "")
+        + f"You can view your full report and book a 1-on-1 consultation by visiting the PsyScreen-RAG Patient Portal.\n\n"
         f"Warm regards,\n"
         f"PsyScreen-RAG Clinical Team\n"
         f"Sender: {sender_email}"
@@ -707,6 +710,7 @@ def send_email_notification(recipient_email: str, patient_name: str, doc_name: s
         "doc_name": doc_name,
         "subject": subject,
         "body": body,
+        "attachment": pdf_filename if pdf_bytes else None,
         "timestamp": datetime.datetime.now()
     }
 
@@ -725,6 +729,8 @@ def send_email_notification(recipient_email: str, patient_name: str, doc_name: s
             msg['From'] = sender_email
             msg['To'] = recipient_email
             msg.set_content(body)
+            if pdf_bytes:
+                msg.add_attachment(pdf_bytes, maintype="application", subtype="pdf", filename=pdf_filename)
 
             smtp_host = os.getenv("SMTP_HOST", "smtp.gmail.com")
             smtp_port = int(os.getenv("SMTP_PORT", "587"))
@@ -796,28 +802,83 @@ def get_severity(score: int, scale: str) -> tuple[str, str, str]:
     return "Unknown", "minimal", "❓"
 
 
-def get_cbt_recommendations(phq9_score: int | None, gad7_score: int | None) -> str:
+# Severity-banded CBT psychoeducational guidance (thesis Ch. 3: PHQ-9/GAD-7 CBT tables, Algorithm 3).
+# One message per instrument, selected by total-score band: 0-4, 5-9, 10-14, 15+.
+# PHQ-9 moderately severe (15-19) and severe (20-27) share the same guidance.
+CBT_GUIDANCE = {
+    "English": {
+        "PHQ9": [
+            ("🏃", "Behavioral Health (Low Mood)", "Maintain healthy baseline routines — regular sleep schedule, outdoor activity, and social connection."),
+            ("📝", "Behavioral Activation", "Schedule 2-3 structured pleasant activities daily. Use a Thought Record to reframe automatic negative thoughts."),
+            ("🧠", "Cognitive Restructuring", "Structured CBT intervention is advised. Focus on identifying cognitive distortions and activity scheduling."),
+            ("🩺", "Clinical Consultation Recommended", "Comprehensive medical and clinical evaluation recommended alongside structured CBT."),
+        ],
+        "GAD7": [
+            ("🧘", "Anxiety Baseline", "Practice daily diaphragmatic breathing and box breathing (4-4-4-4)."),
+            ("⏰", "Worry Management", "Implement scheduled 'Worry Postponement' (15 min daily worry slot) and 5-4-3-2-1 Grounding."),
+            ("🛡️", "Exposure & Cognitive Reframing", "Build an Exposure Hierarchy and work on anxiety tolerance skills."),
+            ("🩺", "Clinical Consultation Recommended", "Urgent consultation with a qualified psychologist or physician advised."),
+        ],
+    },
+    "Roman Urdu": {
+        "PHQ9": [
+            ("🏃", "Sehatmand Routine (Low Mood)", "Apni sehatmand routine qaim rakhein — neend ka baqaaida waqt, bahar ki physical activity aur logon se mel jol."),
+            ("📝", "Behavioral Activation", "Rozana 2-3 pasandeeda activities plan karein. Manfi (negative) khayalat ko badalne ke liye Thought Record istemal karein."),
+            ("🧠", "Cognitive Restructuring", "Structured CBT ka mashwara diya jata hai. Sochne ki ghalatiyon (cognitive distortions) ko pehchanne aur activity scheduling par tawajjo dein."),
+            ("🩺", "Clinical Consultation ka Mashwara", "Structured CBT ke saath mukammal medical aur clinical muainay ka mashwara diya jata hai."),
+        ],
+        "GAD7": [
+            ("🧘", "Sukoon ki Bunyadi Mashq", "Rozana pait se gehri saans (diaphragmatic breathing) aur box breathing (4-4-4-4) ki mashq karein."),
+            ("⏰", "Fikr par Qaboo (Worry Management)", "Rozana fikr ke liye 15 minute ka muqarrar waqt rakhein ('Worry Postponement') aur 5-4-3-2-1 Grounding ki mashq karein."),
+            ("🛡️", "Exposure & Cognitive Reframing", "Exposure Hierarchy (darr wali situations ki darja-ba-darja list) banayein aur anxiety bardasht karne ki skills par kaam karein."),
+            ("🩺", "Clinical Consultation ka Mashwara", "Kisi qualified psychologist ya doctor se fori mashwara karein."),
+        ],
+    },
+    "اردو": {
+        "PHQ9": [
+            ("🏃", "صحت مند معمولات", "اپنی صحت مند روزمرہ روٹین برقرار رکھیں — باقاعدہ نیند، باہر جسمانی سرگرمی اور لوگوں سے میل جول۔"),
+            ("📝", "رویّہ جاتی فعالیت (Behavioral Activation)", "روزانہ 2 سے 3 خوشگوار سرگرمیاں طے کریں۔ منفی خودکار خیالات کو بدلنے کے لیے تھاٹ ریکارڈ (Thought Record) استعمال کریں۔"),
+            ("🧠", "سوچ کی تنظیمِ نو (Cognitive Restructuring)", "منظم CBT کا مشورہ دیا جاتا ہے۔ سوچ کی غلطیوں (cognitive distortions) کی نشاندہی اور سرگرمیوں کی منصوبہ بندی پر توجہ دیں۔"),
+            ("🩺", "طبی مشاورت تجویز کی جاتی ہے", "منظم CBT کے ساتھ مکمل طبی اور کلینیکل معائنے کا مشورہ دیا جاتا ہے۔"),
+        ],
+        "GAD7": [
+            ("🧘", "سکون کی بنیادی مشق", "روزانہ پیٹ سے گہری سانس (diaphragmatic breathing) اور باکس بریدنگ (4-4-4-4) کی مشق کریں۔"),
+            ("⏰", "فکر پر قابو", "روزانہ فکر کے لیے 15 منٹ کا مقررہ وقت رکھیں (Worry Postponement) اور 5-4-3-2-1 گراؤنڈنگ کی مشق کریں۔"),
+            ("🛡️", "ایکسپوژر اور سوچ کی نئی ترتیب", "ایکسپوژر ہائرارکی (خوف والی صورتحال کی درجہ بہ درجہ فہرست) بنائیں اور بے چینی برداشت کرنے کی مہارتوں پر کام کریں۔"),
+            ("🩺", "طبی مشاورت تجویز کی جاتی ہے", "کسی مستند ماہرِ نفسیات یا ڈاکٹر سے فوری مشورہ کریں۔"),
+        ],
+    },
+}
+
+SEVERITY_LABELS_URDU = {
+    "Minimal": "کم سے کم", "Mild": "ہلکا", "Moderate": "درمیانہ",
+    "Moderately Severe": "درمیانہ شدید", "Severe": "شدید",
+}
+
+
+def _cbt_band_index(score: int) -> int:
+    if score <= 4:
+        return 0
+    elif score <= 9:
+        return 1
+    elif score <= 14:
+        return 2
+    return 3
+
+
+def get_cbt_guidance(phq9_score: int | None, gad7_score: int | None, lang: str = "English") -> list[tuple[str, str, str]]:
+    """Return (emoji, title, text) for the PHQ-9 band and the GAD-7 band, in the chosen language."""
+    guidance = CBT_GUIDANCE.get(lang, CBT_GUIDANCE["English"])
     recs = []
     if phq9_score is not None:
-        if phq9_score <= 4:
-            recs.append("🏃 **Behavioral Health (Low Mood):** Maintain healthy baseline routines — regular sleep schedule, outdoor activity, and social connection.")
-        elif phq9_score <= 9:
-            recs.append("📝 **Behavioral Activation:** Schedule 2-3 structured pleasant activities daily. Use a Thought Record to reframe automatic negative thoughts.")
-        elif phq9_score <= 14:
-            recs.append("🧠 **Cognitive Restructuring:** Structured CBT intervention is advised. Focus on identifying cognitive distortions and activity scheduling.")
-        else:
-            recs.append("🩺 **Clinical Consultation Recommended:** Comprehensive medical and clinical evaluation recommended alongside structured CBT.")
-
+        recs.append(guidance["PHQ9"][_cbt_band_index(phq9_score)])
     if gad7_score is not None:
-        if gad7_score <= 4:
-            recs.append("🧘 **Anxiety Baseline:** Practice daily diaphragmatic breathing and box breathing (4-4-4-4).")
-        elif gad7_score <= 9:
-            recs.append("⏰ **Worry Management:** Implement scheduled 'Worry Postponement' (15 min daily worry slot) and 5-4-3-2-1 Grounding.")
-        elif gad7_score <= 14:
-            recs.append("🛡️ **Exposure & Cognitive Reframing:** Build an Exposure Hierarchy and work on anxiety tolerance skills.")
-        else:
-            recs.append("🩺 **Clinical Consultation Recommended:** Urgent consultation with a qualified psychologist or physician advised.")
+        recs.append(guidance["GAD7"][_cbt_band_index(gad7_score)])
+    return recs
 
+
+def get_cbt_recommendations(phq9_score: int | None, gad7_score: int | None, lang: str = "English") -> str:
+    recs = [f"{emoji} **{title}:** {text}" for emoji, title, text in get_cbt_guidance(phq9_score, gad7_score, lang)]
     return "\n\n".join(recs) if recs else "Maintain baseline self-care practices."
 
 
@@ -1044,7 +1105,7 @@ def advance_state(user_input: str):
                 st.session_state.crisis_triggered = True
                 bot_msg = ("🆘 **Safety Notice & Support Helplines:**\n"
                            "You indicated experiencing thoughts of self-harm or distress. Please know support is available 24/7:\n"
-                           "📞 Umang Pakistan: **0317-4288665** | Rescue: **1122**\n\n"
+                           "📞 Umang Pakistan: **0317-4288665** (24/7) | Rozan Counseling: **051-2890505** | Rescue: **1122**\n\n"
                            "We are continuing the assessment so your assigned Clinical Psychologist receives your complete 16-question report.")
                 add_message("assistant", bot_msg)
         else:
@@ -1058,8 +1119,9 @@ def advance_state(user_input: str):
                 st.session_state.current_q_index = 0
                 _ask_current_question()
             else:
-                # All questions complete -> Present Submit & Download options!
+                # All questions complete -> Scores, CBT guidance, then Submit & Download options
                 st.session_state.state = "SUBMIT_OR_DOWNLOAD"
+                _present_results_and_cbt()
                 _present_completion_options()
         else:
             _ask_current_question()
@@ -1097,6 +1159,43 @@ def _ask_current_question():
         header = f"**Question {current_q_number}/{total_qs}:**"
 
     bot_msg = f"{header}\n{current_q}\n\n*({options_str})*"
+    add_message("assistant", bot_msg)
+
+
+def _present_results_and_cbt():
+    """Phases 3-4: show both totals with severity bands, then one CBT guidance message per instrument."""
+    lang = st.session_state.language
+    phq9_total = sum(st.session_state.phq9_scores)
+    gad7_total = sum(st.session_state.gad7_scores)
+    phq_label, _, phq_emo = get_severity(phq9_total, "PHQ9")
+    gad_label, _, gad_emo = get_severity(gad7_total, "GAD7")
+    guidance = get_cbt_recommendations(phq9_total, gad7_total, lang)
+
+    if lang == "Roman Urdu":
+        bot_msg = (
+            f"📊 **Aap ke Wellbeing Survey ke Nataij:**\n\n"
+            f"- **PHQ-9 (mood / udaasi):** {phq9_total}/27 — {phq_emo} {phq_label}\n"
+            f"- **GAD-7 (anxiety / ghabrahat):** {gad7_total}/21 — {gad_emo} {gad_label}\n\n"
+            f"🧘 **CBT Psychoeducational Rehnumai:**\n\n{guidance}\n\n"
+            f"*Yeh sirf screening support hai, diagnosis nahi. Aap ka muntakhib psychologist poori report review kar sakta hai.*"
+        )
+    elif lang == "اردو":
+        bot_msg = (
+            f"📊 **آپ کے ویلبیئنگ سروے کے نتائج:**\n\n"
+            f"- **PHQ-9 (موڈ / اداسی):** {phq9_total}/27 — {phq_emo} {SEVERITY_LABELS_URDU.get(phq_label, phq_label)}\n"
+            f"- **GAD-7 (بے چینی / گھبراہٹ):** {gad7_total}/21 — {gad_emo} {SEVERITY_LABELS_URDU.get(gad_label, gad_label)}\n\n"
+            f"🧘 **CBT پر مبنی رہنمائی:**\n\n{guidance}\n\n"
+            f"*یہ صرف اسکریننگ میں مدد ہے، تشخیص نہیں۔ آپ کے منتخب کردہ ماہرِ نفسیات مکمل رپورٹ کا جائزہ لے سکتے ہیں۔*"
+        )
+    else:
+        bot_msg = (
+            f"📊 **Your Wellbeing Survey Results:**\n\n"
+            f"- **PHQ-9 (mood):** {phq9_total}/27 — {phq_emo} {phq_label}\n"
+            f"- **GAD-7 (anxiety):** {gad7_total}/21 — {gad_emo} {gad_label}\n\n"
+            f"🧘 **CBT Psychoeducational Guidance:**\n\n{guidance}\n\n"
+            f"*This is screening support only, not a diagnosis. Your chosen psychologist can review the full report.*"
+        )
+
     add_message("assistant", bot_msg)
 
 
@@ -1349,6 +1448,7 @@ if st.session_state.app_mode == "patient":
                         <div style="font-weight:700;font-size:1.1rem;color:#38bdf8;">{p_info['name']}</div>
                         <div style="font-size:0.85rem;color:#c084fc;font-weight:600;">{p_info['title']} • {p_info['experience_years']} Yrs Exp</div>
                         <div style="font-size:0.8rem;color:#94a3b8;margin-top:2px;">📍 {p_info['city']}, {p_info['country']} | Clinics: {', '.join([c['name'] for c in p_info['clinics']])}</div>
+                        <div style="font-size:0.8rem;color:#94a3b8;margin-top:2px;">🎓 {' • '.join(p_info['qualifications'])}</div>
                         <div style="font-size:0.82rem;color:#cbd5e0;margin-top:6px;">{p_info['bio']}</div>
                     </div>
                 </div>
@@ -1471,6 +1571,10 @@ if st.session_state.app_mode == "patient":
                     patient_emails = [e for e in st.session_state.get("email_outbox", []) if e["recipient"] == rpt["patient_email"]]
                     if patient_emails:
                         latest_email = patient_emails[0]
+                        attach_html = (
+                            f"<div style='font-size:0.8rem;color:#94a3b8;margin-top:0.5rem;'>📎 Attachment: {latest_email['attachment']}</div>"
+                            if latest_email.get("attachment") else ""
+                        )
                         st.markdown(f"""
                         <div style="background:rgba(99,102,241,0.12);border:1px solid rgba(129,140,248,0.3);border-radius:14px;padding:1rem;margin:1rem 0;">
                             <div style="font-weight:700;color:#38bdf8;font-size:0.95rem;margin-bottom:0.4rem;">
@@ -1482,7 +1586,7 @@ if st.session_state.app_mode == "patient":
                             <div style="font-size:0.85rem;color:#f8fafc;background:rgba(15,23,42,0.6);padding:0.8rem;border-radius:8px;white-space:pre-wrap;font-family:sans-serif;">
                                 <strong>Subject: {latest_email['subject']}</strong><br><br>
                                 {latest_email['body']}
-                            </div>
+                            </div>{attach_html}
                         </div>
                         """, unsafe_allow_html=True)
                     else:
@@ -1586,7 +1690,7 @@ else:
                             st.markdown(f"**GAD-7 Score:** {rpt['gad7_total']}/21 <span class='badge badge-{gad_css}'>{gad_emo} {gad_label}</span>", unsafe_allow_html=True)
 
                         st.markdown("<br>", unsafe_allow_html=True)
-                        st.markdown("#### 🧘 RAG CBT Psychoeducational Guidance")
+                        st.markdown("#### 🧘 CBT Psychoeducational Guidance (severity-banded)")
                         st.markdown(get_cbt_recommendations(rpt['phq9_total'], rpt['gad7_total']))
 
                         st.markdown("<br>", unsafe_allow_html=True)
@@ -1611,13 +1715,15 @@ else:
                             rpt["psychologist_notes"] = feedback_note
                             rpt["reviewed_at"] = datetime.datetime.now()
 
-                            # Dispatch email from msdsf23m027@pucit.edu.pk
+                            # Dispatch email (reviewed PDF attached) from msdsf23m027@pucit.edu.pk
                             res = send_email_notification(
                                 recipient_email=rpt.get("patient_email", "patient@example.com"),
                                 patient_name=rpt["patient_name"],
                                 doc_name=psych_info["name"],
                                 verdict=status_val,
-                                notes=feedback_note
+                                notes=feedback_note,
+                                pdf_bytes=generate_pdf_report(rpt),
+                                pdf_filename=f"psyscreen_report_{rpt['id']}.pdf"
                             )
 
                             if res.get("real_smtp"):
