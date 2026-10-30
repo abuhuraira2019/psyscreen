@@ -882,6 +882,298 @@ def get_cbt_recommendations(phq9_score: int | None, gad7_score: int | None, lang
     return "\n\n".join(recs) if recs else "Maintain baseline self-care practices."
 
 
+# Interactive CBT exercises: deterministic, step-by-step practice of the techniques named in the
+# severity-banded guidance. Answers stay in the session; they are not scored or sent to the LLM.
+CBT_EXERCISES = {
+    "thought_record": {
+        "emoji": "📝",
+        "title": {"English": "Thought Record", "Roman Urdu": "Thought Record (Khayalat ka Record)", "اردو": "خیالات کا ریکارڈ"},
+        "intro": {
+            "English": "A thought record helps you notice an upsetting thought and test whether it is fully accurate. Think of a recent moment when your mood dropped.",
+            "Roman Urdu": "Thought Record aap ko kisi pareshan karne wale khayal ko pehchanne aur yeh jaanchne mein madad deta hai ke woh kitna durust hai. Haal hi ka koi lamha sochein jab aap ka mood gir gaya tha.",
+            "اردو": "خیالات کا ریکارڈ آپ کو کسی پریشان کن خیال کو پہچاننے اور یہ جانچنے میں مدد دیتا ہے کہ وہ کتنا درست ہے۔ حال ہی کا کوئی لمحہ سوچیں جب آپ کا موڈ خراب ہوا تھا۔",
+        },
+        "steps": {
+            "English": [
+                ("Situation", "What happened? Briefly describe the situation (where, when, who was there)."),
+                ("Automatic thought", "What thought went through your mind at that moment?"),
+                ("Emotion", "What did you feel, and how strong was it (0–100)?"),
+                ("Evidence for", "What facts support this thought?"),
+                ("Evidence against", "What facts do not support this thought? What would you tell a friend in the same situation?"),
+                ("Balanced thought", "Now write a more balanced or helpful thought."),
+                ("Re-rating", "How strong is the feeling now (0–100)?"),
+            ],
+            "Roman Urdu": [
+                ("Situation", "Kya hua tha? Situation mukhtasar bataein (kahan, kab, kaun saath tha)."),
+                ("Khayal (Automatic thought)", "Us waqt aap ke zehen mein kya khayal aaya?"),
+                ("Jazbaat", "Aap ne kya mehsoos kiya, aur kitni shiddat se (0–100)?"),
+                ("Haq mein saboot", "Kaun si baatein is khayal ko sach sabit karti hain?"),
+                ("Khilaaf saboot", "Kaun si baatein is khayal ke khilaaf hain? Agar aap ka dost isi situation mein hota to aap usay kya kehte?"),
+                ("Mutawazin khayal", "Ab ek ziyada mutawazin (balanced) ya madadgaar khayal likhein."),
+                ("Dobara rating", "Ab yeh jazba kitna shadeed hai (0–100)?"),
+            ],
+            "اردو": [
+                ("صورتحال", "کیا ہوا تھا؟ صورتحال مختصراً بتائیں (کہاں، کب، کون ساتھ تھا)۔"),
+                ("خودکار خیال", "اس وقت آپ کے ذہن میں کیا خیال آیا؟"),
+                ("جذبات", "آپ نے کیا محسوس کیا، اور کتنی شدت سے (0 سے 100)؟"),
+                ("حق میں ثبوت", "کون سی باتیں اس خیال کو سچ ثابت کرتی ہیں؟"),
+                ("خلاف ثبوت", "کون سی باتیں اس خیال کے خلاف ہیں؟ اگر آپ کا کوئی دوست اسی صورتحال میں ہوتا تو آپ اسے کیا کہتے؟"),
+                ("متوازن خیال", "اب ایک زیادہ متوازن یا مددگار خیال لکھیں۔"),
+                ("دوبارہ درجہ بندی", "اب یہ جذبہ کتنا شدید ہے (0 سے 100)؟"),
+            ],
+        },
+        "closing": {
+            "English": "Well done. Noticing and testing thoughts is a core CBT skill — try one thought record a day this week.",
+            "Roman Urdu": "Shabash! Khayalat ko pehchanna aur jaanchna CBT ki bunyadi skill hai — is hafte rozana ek thought record karne ki koshish karein.",
+            "اردو": "شاباش! خیالات کو پہچاننا اور جانچنا CBT کی بنیادی مہارت ہے — اس ہفتے روزانہ ایک تھاٹ ریکارڈ کرنے کی کوشش کریں۔",
+        },
+    },
+    "behavioural_activation": {
+        "emoji": "🏃",
+        "title": {"English": "Behavioural Activation Plan", "Roman Urdu": "Behavioral Activation Plan", "اردو": "سرگرمیوں کا منصوبہ"},
+        "intro": {
+            "English": "Low mood makes us do less, and doing less lowers mood further. Behavioural activation breaks this cycle by planning small, rewarding activities.",
+            "Roman Urdu": "Udaasi ki wajah se hum kam kaam karte hain, aur kam kaam karne se mood aur gir jata hai. Behavioral Activation chhoti, khushgawar activities plan karke is chakkar ko torta hai.",
+            "اردو": "اداسی کی وجہ سے ہم کم کام کرتے ہیں، اور کم کام کرنے سے موڈ مزید خراب ہوتا ہے۔ رویّہ جاتی فعالیت چھوٹی، خوشگوار سرگرمیاں طے کر کے اس چکر کو توڑتی ہے۔",
+        },
+        "steps": {
+            "English": [
+                ("Activities", "List 2–3 small activities that you used to enjoy or that give you a sense of achievement (e.g. a short walk, calling a friend, tidying one shelf)."),
+                ("Schedule", "When exactly will you do each one this week? Write the day and time."),
+                ("Obstacles", "What might get in the way, and how will you handle it?"),
+                ("Mood prediction", "Predict your mood after the first activity (0–10). Afterwards, compare it with how you actually felt."),
+            ],
+            "Roman Urdu": [
+                ("Activities", "2–3 chhoti activities likhein jo pehle aap ko achi lagti thein ya jin se kaamyabi ka ehsaas hota hai (maslan thori walk, kisi dost ko call, ek shelf saaf karna)."),
+                ("Schedule", "Is hafte har activity aap kab karein ge? Din aur waqt likhein."),
+                ("Rukawatein", "Kya cheez rukawat ban sakti hai, aur aap us se kaise niptein ge?"),
+                ("Mood ka andaza", "Pehli activity ke baad aap ka mood kaisa hoga (0–10)? Baad mein asal mood se muqabla karein."),
+            ],
+            "اردو": [
+                ("سرگرمیاں", "2 سے 3 چھوٹی سرگرمیاں لکھیں جو پہلے آپ کو اچھی لگتی تھیں یا جن سے کامیابی کا احساس ہوتا ہے (مثلاً تھوڑی سی سیر، کسی دوست کو فون، ایک شیلف صاف کرنا)۔"),
+                ("شیڈول", "اس ہفتے ہر سرگرمی آپ کب کریں گے؟ دن اور وقت لکھیں۔"),
+                ("رکاوٹیں", "کیا چیز رکاوٹ بن سکتی ہے، اور آپ اس سے کیسے نمٹیں گے؟"),
+                ("موڈ کا اندازہ", "پہلی سرگرمی کے بعد آپ کا موڈ کیسا ہوگا (0 سے 10)؟ بعد میں اصل موڈ سے موازنہ کریں۔"),
+            ],
+        },
+        "closing": {
+            "English": "Your activity plan is ready. Action often comes before motivation — start small and notice how your mood changes.",
+            "Roman Urdu": "Aap ka activity plan tayyar hai. Aksar amal pehle aata hai aur himmat baad mein — chhote qadam se shuru karein aur mood mein tabdeeli par ghaur karein.",
+            "اردو": "آپ کا سرگرمی کا منصوبہ تیار ہے۔ اکثر عمل پہلے آتا ہے اور ہمت بعد میں — چھوٹے قدم سے شروع کریں اور موڈ میں تبدیلی پر غور کریں۔",
+        },
+    },
+    "worry_postponement": {
+        "emoji": "⏰",
+        "title": {"English": "Worry Postponement", "Roman Urdu": "Worry Postponement (Fikr Multavi Karna)", "اردو": "فکر کو ملتوی کرنا"},
+        "intro": {
+            "English": "Worry postponement means setting aside a fixed time for worrying instead of worrying all day.",
+            "Roman Urdu": "Worry Postponement ka matlab hai saara din fikr karne ke bajaye fikr ke liye ek muqarrar waqt rakhna.",
+            "اردو": "فکر کو ملتوی کرنے کا مطلب ہے سارا دن فکر کرنے کے بجائے فکر کے لیے ایک مقررہ وقت رکھنا۔",
+        },
+        "steps": {
+            "English": [
+                ("Worry", "Write down the worry that is on your mind right now."),
+                ("Can I act now?", "Can you do something about it now? If yes, write one small step. If not, write 'no'."),
+                ("Worry time", "Choose a fixed 15-minute 'worry time' for later today (e.g. 6:00–6:15 pm)."),
+                ("Postponing", "Until then, when the worry comes back, note it down and gently bring your attention back to what you are doing. Type 'OK' when you are ready."),
+            ],
+            "Roman Urdu": [
+                ("Fikr", "Jo fikr is waqt aap ke zehen mein hai, woh likhein."),
+                ("Kya abhi kuch kar sakte hain?", "Kya aap abhi is ke bare mein kuch kar sakte hain? Agar haan, to ek chhota qadam likhein. Agar nahi, to 'nahi' likhein."),
+                ("Fikr ka waqt", "Aaj ke liye 15 minute ka ek muqarrar 'fikr ka waqt' chunein (maslan shaam 6:00–6:15)."),
+                ("Multavi karna", "Tab tak jab bhi yeh fikr wapas aaye, usay note kar lein aur aahista se apni tawajjo wapas apne kaam par le aayein. Tayyar hon to 'OK' likhein."),
+            ],
+            "اردو": [
+                ("فکر", "جو فکر اس وقت آپ کے ذہن میں ہے، وہ لکھیں۔"),
+                ("کیا ابھی کچھ کر سکتے ہیں؟", "کیا آپ ابھی اس بارے میں کچھ کر سکتے ہیں؟ اگر ہاں، تو ایک چھوٹا قدم لکھیں۔ اگر نہیں، تو 'نہیں' لکھیں۔"),
+                ("فکر کا وقت", "آج کے لیے 15 منٹ کا ایک مقررہ 'فکر کا وقت' چنیں (مثلاً شام 6:00 سے 6:15)۔"),
+                ("ملتوی کرنا", "تب تک جب بھی یہ فکر واپس آئے، اسے نوٹ کر لیں اور آہستہ سے اپنی توجہ واپس اپنے کام پر لے آئیں۔ تیار ہوں تو 'OK' لکھیں۔"),
+            ],
+        },
+        "closing": {
+            "English": "During your worry time, look at the worries you noted — many feel smaller later. Repeat this daily.",
+            "Roman Urdu": "Fikr ke waqt apni likhi hui fikrein dekhein — aksar woh baad mein chhoti lagti hain. Rozana yeh mashq karein.",
+            "اردو": "فکر کے وقت اپنی لکھی ہوئی فکریں دیکھیں — اکثر وہ بعد میں چھوٹی لگتی ہیں۔ روزانہ یہ مشق کریں۔",
+        },
+    },
+    "grounding": {
+        "emoji": "🌿",
+        "title": {"English": "5-4-3-2-1 Grounding", "Roman Urdu": "5-4-3-2-1 Grounding", "اردو": "5-4-3-2-1 گراؤنڈنگ"},
+        "intro": {
+            "English": "5-4-3-2-1 grounding brings your attention back to the present moment when anxiety rises. Take your time with each step.",
+            "Roman Urdu": "5-4-3-2-1 Grounding ghabrahat ke waqt aap ki tawajjo maujooda lamhe mein wapas laati hai. Har qadam aaram se karein.",
+            "اردو": "5-4-3-2-1 گراؤنڈنگ گھبراہٹ کے وقت آپ کی توجہ موجودہ لمحے میں واپس لاتی ہے۔ ہر قدم آرام سے کریں۔",
+        },
+        "steps": {
+            "English": [
+                ("See", "Name 5 things you can see around you."),
+                ("Touch", "Name 4 things you can touch or feel (e.g. your feet on the floor)."),
+                ("Hear", "Name 3 things you can hear."),
+                ("Smell", "Name 2 things you can smell (or two smells you like)."),
+                ("Taste", "Name 1 thing you can taste (or a taste you like)."),
+            ],
+            "Roman Urdu": [
+                ("Dekhein", "Apne aas paas 5 cheezein batayein jo aap dekh sakte hain."),
+                ("Chhuein", "4 cheezein batayein jinhein aap chhoo ya mehsoos kar sakte hain (maslan zameen par apne paon)."),
+                ("Sunein", "3 aawazein batayein jo aap sun sakte hain."),
+                ("Soonghein", "2 cheezein batayein jin ki khushboo aap mehsoos kar sakte hain (ya do pasandeeda khushbuein)."),
+                ("Chakhein", "1 cheez batayein jis ka zaiqa aap mehsoos kar sakte hain (ya koi pasandeeda zaiqa)."),
+            ],
+            "اردو": [
+                ("دیکھیں", "اپنے آس پاس 5 چیزیں بتائیں جو آپ دیکھ سکتے ہیں۔"),
+                ("چھوئیں", "4 چیزیں بتائیں جنہیں آپ چھو یا محسوس کر سکتے ہیں (مثلاً زمین پر اپنے پاؤں)۔"),
+                ("سنیں", "3 آوازیں بتائیں جو آپ سن سکتے ہیں۔"),
+                ("سونگھیں", "2 چیزیں بتائیں جن کی خوشبو آپ محسوس کر سکتے ہیں (یا دو پسندیدہ خوشبوئیں)۔"),
+                ("چکھیں", "1 چیز بتائیں جس کا ذائقہ آپ محسوس کر سکتے ہیں (یا کوئی پسندیدہ ذائقہ)۔"),
+            ],
+        },
+        "closing": {
+            "English": "Notice how you feel now. You can use 5-4-3-2-1 grounding whenever anxiety rises.",
+            "Roman Urdu": "Ab ghaur karein ke aap kaisa mehsoos kar rahe hain. Jab bhi ghabrahat barhe, 5-4-3-2-1 Grounding istemal kar sakte hain.",
+            "اردو": "اب غور کریں کہ آپ کیسا محسوس کر رہے ہیں۔ جب بھی گھبراہٹ بڑھے، 5-4-3-2-1 گراؤنڈنگ استعمال کر سکتے ہیں۔",
+        },
+    },
+    "box_breathing": {
+        "emoji": "🧘",
+        "title": {"English": "Box Breathing (4-4-4-4)", "Roman Urdu": "Box Breathing (4-4-4-4)", "اردو": "باکس بریدنگ (4-4-4-4)"},
+        "intro": {
+            "English": "Box breathing (4-4-4-4) slows your breathing and calms the body's stress response.",
+            "Roman Urdu": "Box Breathing (4-4-4-4) saans ko aahista karti hai aur jism ke stress ko kam karti hai.",
+            "اردو": "باکس بریدنگ (4-4-4-4) سانس کو آہستہ کرتی ہے اور جسم کے دباؤ کو کم کرتی ہے۔",
+        },
+        "steps": {
+            "English": [
+                ("Tension before", "How tense do you feel right now (0–10)?"),
+                ("Tension after", "Now breathe in slowly for 4 seconds, hold for 4, breathe out for 4 and hold for 4. Repeat this 4 times. Then type how tense you feel now (0–10)."),
+            ],
+            "Roman Urdu": [
+                ("Pehle tension", "Is waqt aap kitna tension mehsoos kar rahe hain (0–10)?"),
+                ("Baad mein tension", "Ab 4 second tak aahista saans andar lein, 4 second rokein, 4 second mein bahar nikaalein aur 4 second rokein. Yeh 4 dafa dohrayein. Phir likhein ke ab kitna tension hai (0–10)."),
+            ],
+            "اردو": [
+                ("پہلے تناؤ", "اس وقت آپ کتنا تناؤ محسوس کر رہے ہیں (0 سے 10)؟"),
+                ("بعد میں تناؤ", "اب 4 سیکنڈ تک آہستہ سانس اندر لیں، 4 سیکنڈ روکیں، 4 سیکنڈ میں باہر نکالیں اور 4 سیکنڈ روکیں۔ یہ 4 بار دہرائیں۔ پھر لکھیں کہ اب کتنا تناؤ ہے (0 سے 10)۔"),
+            ],
+        },
+        "closing": {
+            "English": "Practise box breathing twice a day and whenever you feel anxious.",
+            "Roman Urdu": "Box Breathing din mein do dafa aur jab bhi ghabrahat ho, zaroor karein.",
+            "اردو": "باکس بریدنگ دن میں دو بار اور جب بھی گھبراہٹ ہو، ضرور کریں۔",
+        },
+    },
+    "exposure_hierarchy": {
+        "emoji": "🛡️",
+        "title": {"English": "Exposure Hierarchy", "Roman Urdu": "Exposure Hierarchy (Darr ki Seerhi)", "اردو": "ایکسپوژر ہائرارکی"},
+        "intro": {
+            "English": "Avoidance keeps anxiety going. An exposure hierarchy helps you face a feared situation gradually, one manageable step at a time.",
+            "Roman Urdu": "Bachne se ghabrahat qaim rehti hai. Exposure Hierarchy aap ko darr wali situation ka aahista aahista, ek qabil-e-amal qadam ke zariye samna karne mein madad deti hai.",
+            "اردو": "بچنے سے گھبراہٹ قائم رہتی ہے۔ ایکسپوژر ہائرارکی آپ کو خوف والی صورتحال کا آہستہ آہستہ، ایک قابلِ عمل قدم کے ذریعے سامنا کرنے میں مدد دیتی ہے۔",
+        },
+        "steps": {
+            "English": [
+                ("Goal", "Which situation do you avoid because of anxiety and would like to face?"),
+                ("Ladder", "List 3–5 smaller steps towards it, from easiest to hardest, with an anxiety rating (0–100) for each."),
+                ("First step", "Which step (rated about 30–40) will you try first, and when?"),
+                ("Coping skill", "Which coping skill will you use during the step (e.g. box breathing, 5-4-3-2-1 grounding)?"),
+            ],
+            "Roman Urdu": [
+                ("Maqsad", "Kaun si situation hai jis se aap ghabrahat ki wajah se bachte hain aur jis ka samna karna chahte hain?"),
+                ("Seerhi (Ladder)", "Us tak pohanchne ke 3–5 chhote qadam likhein, aasaan se mushkil tak, har ek ki ghabrahat rating (0–100) ke saath."),
+                ("Pehla qadam", "Aap pehle kaun sa qadam (taqreeban 30–40 rating wala) aazmaayein ge, aur kab?"),
+                ("Coping skill", "Is qadam ke dauran aap kaun si coping skill istemal karein ge (maslan box breathing, 5-4-3-2-1 grounding)?"),
+            ],
+            "اردو": [
+                ("مقصد", "کون سی صورتحال ہے جس سے آپ گھبراہٹ کی وجہ سے بچتے ہیں اور جس کا سامنا کرنا چاہتے ہیں؟"),
+                ("سیڑھی", "اس تک پہنچنے کے 3 سے 5 چھوٹے قدم لکھیں، آسان سے مشکل تک، ہر ایک کی گھبراہٹ کی درجہ بندی (0 سے 100) کے ساتھ۔"),
+                ("پہلا قدم", "آپ پہلے کون سا قدم (تقریباً 30 سے 40 درجے والا) آزمائیں گے، اور کب؟"),
+                ("مقابلے کی مہارت", "اس قدم کے دوران آپ کون سی مہارت استعمال کریں گے (مثلاً باکس بریدنگ، 5-4-3-2-1 گراؤنڈنگ)؟"),
+            ],
+        },
+        "closing": {
+            "English": "Stay with each step until your anxiety drops, repeat it, then move up the ladder. If your anxiety is severe, work through the ladder with a psychologist.",
+            "Roman Urdu": "Har qadam par itni der rahein ke ghabrahat kam ho jaye, usay dohrayein, phir agla qadam lein. Agar ghabrahat shadeed hai to yeh mashq kisi psychologist ke saath karein.",
+            "اردو": "ہر قدم پر اتنی دیر رہیں کہ گھبراہٹ کم ہو جائے، اسے دہرائیں، پھر اگلا قدم لیں۔ اگر گھبراہٹ شدید ہے تو یہ مشق کسی ماہرِ نفسیات کے ساتھ کریں۔",
+        },
+    },
+}
+
+# Exercises recommended for each severity band (index from _cbt_band_index), matching CBT_GUIDANCE.
+CBT_RECOMMENDED = {
+    "PHQ9": [
+        ["behavioural_activation"],
+        ["behavioural_activation", "thought_record"],
+        ["thought_record", "behavioural_activation"],
+        ["thought_record", "behavioural_activation"],
+    ],
+    "GAD7": [
+        ["box_breathing"],
+        ["worry_postponement", "grounding"],
+        ["exposure_hierarchy", "thought_record"],
+        ["grounding", "box_breathing"],
+    ],
+}
+
+CBT_UI = {
+    "English": {
+        "menu_intro": ("🧘 **CBT Exercises**\n\nThese short guided exercises put your CBT guidance into practice. "
+                       "Exercises marked ⭐ match your screening results. Type your answers in the chat box. "
+                       "Your answers stay in this session and are not added to your report."),
+        "open_btn": "🧘 Practice CBT Exercises",
+        "ask_btn": "💬 Ask the CBT Assistant",
+        "back_btn": "⬅️ Back",
+        "stop_btn": "⏹️ Stop Exercise",
+        "to_menu_btn": "🧘 Back to CBT Exercises",
+        "step": "Step",
+        "summary": "Your summary",
+        "next_msg": "Choose another exercise below, ask the CBT assistant, or go back.",
+        "stopped": "Exercise stopped. You can choose another exercise below.",
+        "chat_intro": ("💬 Ask me about CBT techniques (for example, how to challenge a negative thought). "
+                       "I answer from the clinical knowledge base and cannot give a diagnosis."),
+    },
+    "Roman Urdu": {
+        "menu_intro": ("🧘 **CBT Exercises**\n\nYeh chhoti guided exercises aap ki CBT rehnumai ko amal mein laane ke liye hain. "
+                       "⭐ wali exercises aap ke screening nataij se mutabiqat rakhti hain. Apne jawab chat box mein likhein. "
+                       "Aap ke jawab sirf is session mein rehte hain aur report mein shamil nahi hote."),
+        "open_btn": "🧘 CBT Exercises Karein",
+        "ask_btn": "💬 CBT Assistant se Poochein",
+        "back_btn": "⬅️ Wapas",
+        "stop_btn": "⏹️ Exercise Rokein",
+        "to_menu_btn": "🧘 CBT Exercises par Wapas",
+        "step": "Qadam",
+        "summary": "Aap ka khulasa",
+        "next_msg": "Niche se koi aur exercise chunein, CBT assistant se poochein, ya wapas jayein.",
+        "stopped": "Exercise rok di gayi. Niche se koi aur exercise chun sakte hain.",
+        "chat_intro": ("💬 CBT techniques ke bare mein poochein (maslan manfi khayal ka muqabla kaise karein). "
+                       "Main clinical knowledge base se jawab deta hoon aur diagnosis nahi de sakta."),
+    },
+    "اردو": {
+        "menu_intro": ("🧘 **CBT مشقیں**\n\nیہ مختصر رہنمائی والی مشقیں آپ کی CBT رہنمائی کو عملی شکل دینے کے لیے ہیں۔ "
+                       "⭐ والی مشقیں آپ کے اسکریننگ نتائج سے مطابقت رکھتی ہیں۔ اپنے جوابات چیٹ باکس میں لکھیں۔ "
+                       "آپ کے جوابات صرف اسی سیشن میں رہتے ہیں اور رپورٹ میں شامل نہیں ہوتے۔"),
+        "open_btn": "🧘 CBT مشقیں کریں",
+        "ask_btn": "💬 CBT اسسٹنٹ سے پوچھیں",
+        "back_btn": "⬅️ واپس",
+        "stop_btn": "⏹️ مشق روکیں",
+        "to_menu_btn": "🧘 CBT مشقوں پر واپس",
+        "step": "قدم",
+        "summary": "آپ کا خلاصہ",
+        "next_msg": "نیچے سے کوئی اور مشق چنیں، CBT اسسٹنٹ سے پوچھیں، یا واپس جائیں۔",
+        "stopped": "مشق روک دی گئی۔ نیچے سے کوئی اور مشق چن سکتے ہیں۔",
+        "chat_intro": ("💬 CBT تکنیکوں کے بارے میں پوچھیں (مثلاً منفی خیال کا مقابلہ کیسے کریں)۔ "
+                       "میں کلینیکل نالج بیس سے جواب دیتا ہوں اور تشخیص نہیں دے سکتا۔"),
+    },
+}
+
+
+def get_recommended_exercises(phq9_score: int | None, gad7_score: int | None) -> list[str]:
+    recs = []
+    if phq9_score is not None:
+        recs += CBT_RECOMMENDED["PHQ9"][_cbt_band_index(phq9_score)]
+    if gad7_score is not None:
+        recs += CBT_RECOMMENDED["GAD7"][_cbt_band_index(gad7_score)]
+    return list(dict.fromkeys(recs))
+
+
 def add_message(role: str, content: str):
     st.session_state.chat_history.append({"role": role, "content": content})
 
@@ -931,6 +1223,11 @@ def init_session():
         "active_patient_report_id": None,
         "reports_db": sample_reports,
         "doctor_authed": {},
+        "cbt_exercise": None,            # id of the CBT exercise in progress
+        "cbt_step": 0,
+        "cbt_answers": [],
+        "cbt_return_state": None,        # state to go back to when leaving the CBT module
+        "cbt_log": [],                   # completed exercises (session only)
     }
     for key, val in defaults.items():
         if key not in st.session_state:
@@ -1126,8 +1423,13 @@ def advance_state(user_input: str):
         else:
             _ask_current_question()
 
-    # ── 5. CBT CHAT (Post-Assessment Free Chat) ────────────────
-    elif state == "CBT_CHAT":
+    # ── 5. CBT EXERCISE (guided, deterministic steps) ──────────
+    elif state == "CBT_EXERCISE":
+        _record_cbt_answer(user_input)
+
+    # ── 6. CBT CHAT (Post-Assessment Free Chat) ────────────────
+    elif state in ("CBT_CHAT", "CBT_MENU"):
+        st.session_state.state = "CBT_CHAT"
         rag_ctx = rag_retrieve(user_input, n_results=5)
         bot_msg = llm_chat(
             f"The patient (Language: {st.session_state.language}) is asking: '{user_input}'. "
@@ -1199,6 +1501,74 @@ def _present_results_and_cbt():
     add_message("assistant", bot_msg)
 
 
+def _screening_totals() -> tuple[int | None, int | None]:
+    phq9 = st.session_state.phq9_scores
+    gad7 = st.session_state.gad7_scores
+    return (sum(phq9) if len(phq9) == 9 else None, sum(gad7) if len(gad7) == 7 else None)
+
+
+def _cbt_text(d: dict):
+    return d.get(st.session_state.language, d["English"])
+
+
+def _open_cbt_menu():
+    if st.session_state.state not in ("CBT_MENU", "CBT_EXERCISE", "CBT_CHAT"):
+        st.session_state.cbt_return_state = st.session_state.state
+    st.session_state.state = "CBT_MENU"
+    st.session_state.cbt_exercise = None
+    add_message("assistant", _cbt_text(CBT_UI)["menu_intro"])
+
+
+def _close_cbt():
+    st.session_state.state = st.session_state.cbt_return_state or "SUBMIT_OR_DOWNLOAD"
+    st.session_state.cbt_exercise = None
+    if st.session_state.state == "SUBMIT_OR_DOWNLOAD":
+        _present_completion_options()
+
+
+def _start_cbt_exercise(ex_id: str):
+    ex = CBT_EXERCISES[ex_id]
+    st.session_state.cbt_exercise = ex_id
+    st.session_state.cbt_step = 0
+    st.session_state.cbt_answers = []
+    st.session_state.state = "CBT_EXERCISE"
+    add_message("assistant", f"{ex['emoji']} **{_cbt_text(ex['title'])}**\n\n{_cbt_text(ex['intro'])}")
+    _ask_cbt_step()
+
+
+def _ask_cbt_step():
+    steps = _cbt_text(CBT_EXERCISES[st.session_state.cbt_exercise]["steps"])
+    i = st.session_state.cbt_step
+    label, prompt = steps[i]
+    add_message("assistant", f"**{_cbt_text(CBT_UI)['step']} {i + 1}/{len(steps)} — {label}**\n\n{prompt}")
+
+
+def _record_cbt_answer(answer: str):
+    ex_id = st.session_state.cbt_exercise
+    ex = CBT_EXERCISES[ex_id]
+    steps = _cbt_text(ex["steps"])
+    st.session_state.cbt_answers.append(answer.strip())
+    st.session_state.cbt_step += 1
+
+    if st.session_state.cbt_step < len(steps):
+        _ask_cbt_step()
+        return
+
+    ui = _cbt_text(CBT_UI)
+    lines = [f"- **{label}:** {ans}" for (label, _), ans in zip(steps, st.session_state.cbt_answers)]
+    add_message("assistant", (
+        f"✅ **{ui['summary']} — {_cbt_text(ex['title'])}**\n\n" + "\n".join(lines)
+        + f"\n\n{_cbt_text(ex['closing'])}\n\n{ui['next_msg']}"
+    ))
+    st.session_state.cbt_log.append({
+        "exercise": ex_id,
+        "answers": list(st.session_state.cbt_answers),
+        "timestamp": datetime.datetime.now(),
+    })
+    st.session_state.cbt_exercise = None
+    st.session_state.state = "CBT_MENU"
+
+
 def _present_completion_options():
     lang = st.session_state.language
     psych_id = st.session_state.selected_psychologist
@@ -1209,21 +1579,24 @@ def _present_completion_options():
             f"✨ **Wellbeing Assessment Mukammal ho gayi hai!**\n\n"
             f"Aap niche diye gaye options mein se select kar sakte hain:\n"
             f"1. 🚀 **Submit Report to {psych['name']}** (Doctor 8 ghante ke andar review karke email bhejenge).\n"
-            f"2. 📥 **Download Assessment Report (PDF)**"
+            f"2. 📥 **Download Assessment Report (PDF)**\n"
+            f"3. 🧘 **CBT Exercises Karein** (guided mashqein aur CBT assistant)"
         )
     elif lang == "اردو":
         bot_msg = (
             f"✨ **ویلبیئنگ سروے مکمل ہو گیا ہے!**\n\n"
             f"آپ نیچے دیے گئے اختیارات میں سے منتخب کر سکتے ہیں:\n"
             f"1. 🚀 **رپورٹ ڈاکٹر کو بھیجیں ({psych['name']})**\n"
-            f"2. 📥 **پی ڈی ایف رپورٹ ڈاؤن لوڈ کریں (PDF)**"
+            f"2. 📥 **پی ڈی ایف رپورٹ ڈاؤن لوڈ کریں (PDF)**\n"
+            f"3. 🧘 **CBT مشقیں کریں** (رہنمائی والی مشقیں اور CBT اسسٹنٹ)"
         )
     else:
         bot_msg = (
             f"✨ **Assessment Completed!**\n\n"
             f"Please choose your next step below:\n"
             f"1. 🚀 **Submit Assessment Report to {psych['name']}** (Your doctor will review within 8 hours and email you).\n"
-            f"2. 📥 **Download Assessment Report (PDF)**"
+            f"2. 📥 **Download Assessment Report (PDF)**\n"
+            f"3. 🧘 **Practice CBT Exercises** (guided exercises and the CBT assistant)"
         )
 
     add_message("assistant", bot_msg)
@@ -1330,6 +1703,9 @@ with st.sidebar:
             st.session_state.phq9_scores = []
             st.session_state.gad7_scores = []
             st.session_state.active_patient_report_id = None
+            st.session_state.cbt_exercise = None
+            st.session_state.cbt_return_state = None
+            st.session_state.cbt_log = []
             st.rerun()
 
     else:
@@ -1531,6 +1907,53 @@ if st.session_state.app_mode == "patient":
                 mime="application/pdf",
                 use_container_width=True
             )
+
+        if st.button(_cbt_text(CBT_UI)["open_btn"], key="btn_open_cbt", use_container_width=True):
+            add_message("user", _cbt_text(CBT_UI)["open_btn"])
+            _open_cbt_menu()
+            st.rerun()
+
+    elif st.session_state.state == "SUBMITTED":
+        if st.button(_cbt_text(CBT_UI)["open_btn"], key="btn_open_cbt_submitted", use_container_width=True):
+            add_message("user", _cbt_text(CBT_UI)["open_btn"])
+            _open_cbt_menu()
+            st.rerun()
+
+    # ── CBT Module: exercise menu, running exercise, CBT assistant chat ──
+    elif st.session_state.state == "CBT_MENU":
+        cbt_ui = _cbt_text(CBT_UI)
+        recommended = get_recommended_exercises(*_screening_totals())
+        ordered = recommended + [k for k in CBT_EXERCISES if k not in recommended]
+        ex_cols = st.columns(2)
+        for i, ex_id in enumerate(ordered):
+            ex = CBT_EXERCISES[ex_id]
+            star = "⭐ " if ex_id in recommended else ""
+            if ex_cols[i % 2].button(f"{star}{ex['emoji']} {_cbt_text(ex['title'])}", key=f"btn_cbt_{ex_id}", use_container_width=True):
+                add_message("user", _cbt_text(ex["title"]))
+                _start_cbt_exercise(ex_id)
+                st.rerun()
+
+        c_ask, c_back = st.columns(2)
+        if c_ask.button(cbt_ui["ask_btn"], key="btn_cbt_ask", use_container_width=True):
+            st.session_state.state = "CBT_CHAT"
+            add_message("assistant", cbt_ui["chat_intro"])
+            st.rerun()
+        if c_back.button(cbt_ui["back_btn"], key="btn_cbt_back", use_container_width=True):
+            _close_cbt()
+            st.rerun()
+
+    elif st.session_state.state == "CBT_EXERCISE":
+        cbt_ui = _cbt_text(CBT_UI)
+        if st.button(cbt_ui["stop_btn"], key="btn_cbt_stop", use_container_width=True):
+            st.session_state.cbt_exercise = None
+            st.session_state.state = "CBT_MENU"
+            add_message("assistant", cbt_ui["stopped"])
+            st.rerun()
+
+    elif st.session_state.state == "CBT_CHAT" and st.session_state.cbt_return_state:
+        if st.button(_cbt_text(CBT_UI)["to_menu_btn"], key="btn_cbt_to_menu", use_container_width=True):
+            _open_cbt_menu()
+            st.rerun()
 
     # ── Submitted Patient Status & Email Toast ──
     if st.session_state.active_patient_report_id:

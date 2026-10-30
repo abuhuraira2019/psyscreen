@@ -13,10 +13,11 @@ Live app: https://psyscreentool.streamlit.app/
 - **Deterministic questionnaire flow**: a state machine presents the 16 items one at a time in a fixed order (PHQ-9 items 1–9, then GAD-7 items 1–7) with fixed, pre-translated wording. Users answer with buttons or free text (digits 0–3, including Urdu/Arabic numerals, or a dictionary of English, Roman Urdu and Urdu expressions); unclear answers are asked again with the four standard options. The language model is not used to administer or score the questionnaires.
 - **Scoring in code**: PHQ-9 (0–27) and GAD-7 (0–21) totals are summed in Python and banded separately (Minimal / Mild / Moderate / Moderately severe / Severe for PHQ-9; Minimal / Mild / Moderate / Severe for GAD-7). No composite score is formed.
 - **Severity-banded CBT guidance**: after the last item, the user sees both totals with their bands and one CBT psychoeducational message per instrument, in the chosen language (see the table below). The same guidance is included in the PDF report and shown in the Doctor Dashboard.
+- **Interactive CBT exercises**: after the assessment, the user can practise six guided, step-by-step exercises in the chosen language: thought record, behavioural activation plan, worry postponement, 5-4-3-2-1 grounding, box breathing and exposure hierarchy. Exercises that match the user's severity bands are marked ⭐. Each exercise ends with a summary of the user's own answers. The steps are fixed (no LLM), every answer still passes the crisis check, and answers stay in the session (they are not added to the report). From the exercise menu the user can also open the RAG-grounded CBT assistant chat.
 - **PDF report**: report metadata, PHQ-9 and GAD-7 totals and bands, CBT guidance and, once reviewed, the psychologist's verdict and feedback (ReportLab).
 - **Clinical Validation (human-in-the-loop review)**: the user submits the report to the chosen psychologist; it appears in the password-protected Doctor Dashboard with an eight-hour review target. The psychologist records a verdict (*Normal / Healthy* or *Consultation Recommended*) and a feedback note, which are e-mailed to the user with the PDF report attached. Users whose report is marked *Consultation Recommended* are offered an appointment-request button.
 - **Crisis check on every input**: a case-insensitive regular expression of 26 patterns (11 English, 15 Roman Urdu) pauses the assessment and shows Pakistani helplines (Umang Pakistan 0317-4288665, Rozan Counseling 051-2890505, Rescue 1122). Any PHQ-9 item 9 answer above 0 shows the same helplines, and the assessment continues.
-- **RAG supportive chat**: after the crisis screen, when the user confirms they are safe, Gemini answers using the top-5 chunks retrieved from the ChromaDB collection `clinical_manuals` and the last ten messages.
+- **RAG supportive chat**: reached from the CBT exercise menu, or after the crisis screen when the user confirms they are safe; Gemini answers using the top-5 chunks retrieved from the ChromaDB collection `clinical_manuals` and the last ten messages.
 
 ### CBT guidance by severity band
 
@@ -33,7 +34,16 @@ Live app: https://psyscreentool.streamlit.app/
 
 ### Conversation states
 
-`COLLECT_LANG` → `COLLECT_NAME_EMAIL` → `SELECT_PSYCHOLOGIST` → `QUESTIONING` → `SUBMIT_OR_DOWNLOAD` → `SUBMITTED`, with `CRISIS` → `CBT_CHAT` reachable from any input.
+`COLLECT_LANG` → `COLLECT_NAME_EMAIL` → `SELECT_PSYCHOLOGIST` → `QUESTIONING` → `SUBMIT_OR_DOWNLOAD` → `SUBMITTED`, with `CRISIS` → `CBT_CHAT` reachable from any input. After the assessment, `CBT_MENU` ⇄ `CBT_EXERCISE` and `CBT_MENU` → `CBT_CHAT` form the CBT module.
+
+### CBT exercises recommended by severity band
+
+| Band | PHQ-9 | GAD-7 |
+|---|---|---|
+| Minimal | Behavioural activation | Box breathing |
+| Mild | Behavioural activation, thought record | Worry postponement, 5-4-3-2-1 grounding |
+| Moderate | Thought record, behavioural activation | Exposure hierarchy, thought record |
+| Moderately severe / Severe | Thought record, behavioural activation (with clinical consultation) | Grounding, box breathing (with clinical consultation) |
 
 ### LLM and retrieval
 
